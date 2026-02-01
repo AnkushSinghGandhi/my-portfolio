@@ -20,12 +20,14 @@ const AiToolbox = ({ context }) => {
     }, [apiKey]);
 
     // Auto-open when context changes (triggered by clicking "Analyze" on a card)
+    // DISABLED: User prefers it collapsed by default
+    /*
     useEffect(() => {
         if (context && context.length > 0) {
             setIsOpen(true);
-            // Flash the button or show a toast?
         }
     }, [context]);
+    */
 
     const handleSaveKey = () => {
         if (apiKey) {
