@@ -177,7 +177,7 @@ const TutorWindow = ({ context }) => {
                 </div>
                 <div className="flex justify-between items-center mt-3 px-1">
                     <p className="text-[10px] text-zinc-600 uppercase tracking-tighter">
-                        SYSTEM_STATUS: READY // AI_MODEL: GEMINI_1.5_FLASH
+                        SYSTEM_STATUS: READY // AI_MODEL: GEMINI_2.5_FLASH
                     </p>
                     <p className="text-[10px] text-zinc-500 italic">
                         Context-aware mode active

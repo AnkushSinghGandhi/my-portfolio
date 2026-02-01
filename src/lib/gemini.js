@@ -7,10 +7,17 @@ let genAI = null;
 let model = null;
 
 export const initializeGemini = (apiKey) => {
+    if (!apiKey) return;
     genAI = new GoogleGenerativeAI(apiKey);
-    // Using gemini-1.5-flash as verified by the user's curl command
-    model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    // Using gemini-2.5-flash as requested by the user
+    model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 };
+
+// Auto-initialize if env var is present or use hardcoded key from user
+const envKey = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyAQ5aDEy-fGT8f5qlQfIvVJVMSfDr2Y6dM";
+if (envKey) {
+    initializeGemini(envKey);
+}
 
 // Demo mode - use pre-generated responses when quota exhausted
 let useDemoMode = false;
@@ -72,7 +79,7 @@ const classifyError = (error) => {
     }
 
     if (msg.includes('404')) {
-        return '❌ MODEL NOT FOUND: Your key lacks access to "gemini-1.5-flash". Please create a NEW key at aistudio.google.com.';
+        return '❌ MODEL NOT FOUND: Your key lacks access to "gemini-2.5-flash". Please verify your model permissions at aistudio.google.com.';
     }
 
     if (msg.includes('500') || msg.includes('503')) {

@@ -9,7 +9,8 @@ import TutorWindow from "./TutorWindow";
 const AiToolbox = ({ context }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeMode, setActiveMode] = useState(null); // 'quiz', 'roadmap', 'pathfinder', 'tutor'
-    const [apiKey, setApiKey] = useState(localStorage.getItem("gemini_key") || "");
+    const envKey = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyAQ5aDEy-fGT8f5qlQfIvVJVMSfDr2Y6dM";
+    const [apiKey, setApiKey] = useState(envKey || localStorage.getItem("gemini_key") || "");
     const [isKeyModalOpen, setIsKeyModalOpen] = useState(false);
     const [pendingMode, setPendingMode] = useState(null);
 
@@ -182,9 +183,17 @@ const AiToolbox = ({ context }) => {
                                 </h2>
                             </div>
                             <div className="flex items-center gap-2">
-                                {/* Clear chat button for tutor can go inside the component, keeping header clean */}
-                                <button onClick={closeWindow} className="p-2 hover:bg-neutral-800 transition-colors rounded-full">
-                                    <X className="w-6 h-6 text-zinc-500 hover:text-white" />
+                                {!envKey && (
+                                    <button
+                                        onClick={() => setIsKeyModalOpen(true)}
+                                        className="p-2 hover:bg-neutral-800 transition-colors border border-transparent hover:border-white/10"
+                                        title="Configure API Key"
+                                    >
+                                        <Settings className="w-5 h-5 text-zinc-500 hover:text-white" />
+                                    </button>
+                                )}
+                                <button onClick={closeWindow} className="p-2 hover:bg-neutral-800 transition-colors border border-transparent hover:border-white/10">
+                                    <X className="w-5 h-5 text-zinc-500 hover:text-white" />
                                 </button>
                             </div>
                         </div>
