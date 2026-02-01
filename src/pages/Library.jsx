@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { cheatsheets, blogs, reads, writingLinks } from "@/data/library";
-import { ArrowUpRight, BookOpen, Linkedin, ExternalLink, Youtube, FileText } from "lucide-react";
+import { ArrowUpRight, BookOpen, Linkedin, ExternalLink, Youtube, FileText, Sparkles } from "lucide-react";
 import { FaDev } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CachedImage from "@/components/CachedImage";
+import { useState } from "react";
+import AiToolbox from "@/components/AiCompanion/AiToolbox";
 
 const getTypeIcon = (type) => {
     switch (type) {
@@ -19,9 +21,35 @@ const getTypeIcon = (type) => {
 };
 
 export default function LibraryPage() {
+    const [aiContext, setAiContext] = useState("");
+
+    const handleAiAnalyze = (e, item) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const context = `
+            Title: ${item.title}
+            Subtitle: ${item.subtitle || item.category || ""}
+            Description: ${item.description || item.desc || ""}
+            Tags: ${item.tags ? item.tags.join(", ") : ""}
+            Type: ${item.type || "Resource"}
+            Content Summary: This offers a comprehensive guide and resources about ${item.title}.
+        `;
+        setAiContext(context);
+        // Dispatch event or use state to open toolbox if needed, but AiToolbox monitors context prop?
+        // Actually AiToolbox manages its own open state. We might need a ref or just let the user open it.
+        // Better: Make AiToolbox auto-open or flash when context changes?
+        // For simplicity: We'll rely on the user opening it, but we set the context.
+        // OR: We force open by passing a separate trigger prop.
+        // Let's just update the context and maybe show a toast or rely on the user noticing the floating button.
+        // Even better: The floating button is ALWAYS there. We just update what it knows.
+    };
+
     return (
         <div className="min-h-screen bg-black text-white font-sans">
             <Navbar />
+
+            {/* AI Companion */}
+            <AiToolbox context={aiContext || "Welcome to Ankush's Developer Archive. Select a roadmap or article to get specific AI insights, or ask general questions about the library content."} />
 
             <section className="relative px-6 sm:px-12 lg:px-20 py-24 pt-32 sm:pt-44 overflow-hidden">
                 {/* Grid Background */}
@@ -92,19 +120,19 @@ export default function LibraryPage() {
                                                 rel="noopener noreferrer"
                                                 className="group relative block h-full bg-neutral-900/40 border border-neutral-800 hover:border-purple-500/30 p-8 transition-all duration-300 hover:bg-neutral-900/60"
                                             >
-                                                <LibraryCard item={item} isFeatured={index === 0} />
+                                                <LibraryCard item={item} isFeatured={index === 0} onAiAnalyze={handleAiAnalyze} />
                                             </a>
                                         ) : (
                                             <Link
                                                 to={item.link}
                                                 className="group relative block h-full bg-neutral-900/40 border border-neutral-800 hover:border-purple-500/30 p-8 transition-all duration-300 hover:bg-neutral-900/60"
                                             >
-                                                <LibraryCard item={item} isFeatured={index === 0} />
+                                                <LibraryCard item={item} isFeatured={index === 0} onAiAnalyze={handleAiAnalyze} />
                                             </Link>
                                         )
                                     ) : (
                                         <div className="group relative block h-full bg-neutral-900/40 border border-neutral-800 hover:border-neutral-700 p-8 transition-all duration-300">
-                                            <LibraryCard item={item} isFeatured={index === 0} />
+                                            <LibraryCard item={item} isFeatured={index === 0} onAiAnalyze={handleAiAnalyze} />
                                         </div>
                                     )}
                                 </motion.div>
@@ -197,9 +225,12 @@ export default function LibraryPage() {
                                                     {getTypeIcon(item.type)}
                                                 </div>
                                                 <div className="flex-1 min-w-0">
-                                                    <h4 className="text-sm font-bold text-gray-300 group-hover:text-cyan-400 transition-colors mb-0.5">
-                                                        {item.title}
-                                                    </h4>
+                                                    <div className="flex items-center justify-between">
+                                                        <h4 className="text-sm font-bold text-gray-300 group-hover:text-cyan-400 transition-colors mb-0.5">
+                                                            {item.title}
+                                                        </h4>
+                                                    </div>
+
                                                     <div className="flex items-center gap-2 mb-1.5">
                                                         <span className="text-[9px] font-mono text-cyan-500/50 uppercase tracking-tighter">
                                                             SOURCE: {item.type.toUpperCase()}
@@ -236,12 +267,14 @@ export default function LibraryPage() {
     );
 }
 
-function LibraryCard({ item, isLocked, isFeatured }) {
+function LibraryCard({ item, isLocked, isFeatured, onAiAnalyze }) {
     return (
         <>
             <div className="flex items-start justify-between mb-8">
                 <span className={`${isFeatured ? "text-6xl" : "text-4xl"} group-hover:scale-110 transition-transform`}>{item.icon}</span>
-                {!isLocked && <ArrowUpRight className={`${isFeatured ? "w-6 h-6" : "w-5 h-5"} text-neutral-600 group-hover:text-purple-400 transition-colors`} />}
+                <div className="flex items-center gap-3">
+                    {!isLocked && <ArrowUpRight className={`${isFeatured ? "w-6 h-6" : "w-5 h-5"} text-neutral-600 group-hover:text-purple-400 transition-colors`} />}
+                </div>
             </div>
 
             <div className="space-y-4">

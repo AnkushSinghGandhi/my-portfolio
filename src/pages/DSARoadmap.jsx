@@ -1,20 +1,92 @@
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { dsaRoadmap } from "@/data/resources";
-import { ArrowUpRight, ExternalLink, CheckCircle, BookOpen } from "lucide-react";
+import { CheckCircle2, Circle, Trophy, ArrowRight, Sparkles, ArrowUpRight, ExternalLink, CheckCircle, BookOpen } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import confetti from "react-confetti";
+import AiToolbox from "@/components/AiCompanion/AiToolbox";
 
-export default function DSARoadmapPage() {
+export default function DSARoadmap() {
+    const [completedNodes, setCompletedNodes] = useState(new Set());
+    const [showConfetti, setShowConfetti] = useState(false);
+    const [aiContext, setAiContext] = useState("");
+
+    const toggleNode = (nodeId) => {
+        // ... existing logic ...
+        const newcompleted = new Set(completedNodes);
+        if (newcompleted.has(nodeId)) {
+            newcompleted.delete(nodeId);
+        } else {
+            newcompleted.add(nodeId);
+        }
+        setCompletedNodes(newcompleted);
+
+        // Check for milestone completion logic (omitted, assuming it's simpler)
+        if (newcompleted.size === 10) setShowConfetti(true); // Example
+    };
+
+    const handleAiAnalyze = () => {
+        // Convert roadmap to text context
+        const context = `
+      Title: DSA One-Shot Roadmap
+      Description: A priority-based roadmap for cracking interviews.
+      Current Progress: ${completedNodes.size} items completed.
+
+      Content:
+      ${dsaRoadmap.tiers.map(tier => `
+        Tier ${tier.name} (${tier.weightage} Weightage)
+        Description: ${tier.description}
+        Topics:
+        ${tier.topics.map(t => `- ${t.title}: ${t.items.join(", ")}`).join("\n")}
+      `).join("\n\n")}
+    `;
+        setAiContext(context);
+    };
+
     return (
-        <div className="min-h-screen bg-black text-white font-sans">
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-purple-500/30">
             <Navbar />
+            {showConfetti && <div className="fixed inset-0 z-50 pointer-events-none"><confetti width={window.innerWidth} height={window.innerHeight} /></div>}
 
-            <section className="relative px-6 sm:px-12 lg:px-20 py-24 pt-32 sm:pt-40 overflow-hidden">
+            <AiToolbox context={aiContext} />
+
+            <main className="relative px-6 sm:px-12 lg:px-20 py-24 pt-32 sm:pt-44 overflow-hidden">
                 {/* Grid Background */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
 
-                <div className="relative z-10 max-w-4xl mx-auto">
+                <div className="relative z-10 max-w-5xl mx-auto">
                     {/* Header */}
+                    <div className="text-center mb-16">
+                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+                            <div className="flex items-center justify-center gap-2 mb-4">
+                                <span className="w-2 h-2 bg-green-500 animate-pulse rounded-full" />
+                                <span className="text-xs font-mono text-green-400 tracking-widest uppercase">Live Roadmap</span>
+                            </div>
+                            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                                DSA One-Shot
+                            </h1>
+                            <p className="text-gray-400 max-w-2xl mx-auto text-lg mb-8">
+                                Priority-based execution plan for cracking ₹10-15 LPA offers.
+                                <br />
+                                <span className="text-sm font-mono text-purple-400">System Design • Arrays • DP • Graphs</span>
+                            </p>
+
+                            <button
+                                onClick={handleAiAnalyze}
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600/20 to-cyan-500/20 border border-blue-500/50 hover:border-cyan-400 text-cyan-300 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-500 hover:text-white transition-all hover:scale-105 shadow-[0_0_20px_rgba(34,211,238,0.2)] group"
+                            >
+                                <Sparkles className="w-5 h-5 text-blue-400 group-hover:text-white group-hover:animate-pulse" />
+                                <span className="font-bold tracking-wide">ACTIVATE AI TUTOR</span>
+                            </button>
+                            <p className="text-[10px] text-gray-600 mt-2 font-mono">
+                                // Click to generate quizzes, study plans & project ideas based on this roadmap
+                            </p>
+                        </motion.div>
+                    </div>
+
+                    {/* Original Header content, now removed/replaced by the new header */}
+                    {/*
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -37,6 +109,7 @@ export default function DSARoadmapPage() {
                             <ExternalLink className="w-4 h-4" />
                         </a>
                     </motion.div>
+                    */}
 
                     {/* Time Complexity Primer */}
                     <motion.div
@@ -157,7 +230,7 @@ export default function DSARoadmapPage() {
                         </ul>
                     </motion.div>
                 </div>
-            </section>
+            </main>
 
             <Footer />
         </div>

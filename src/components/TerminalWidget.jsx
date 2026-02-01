@@ -269,11 +269,31 @@ Namespaces are one honking great idea -- let's do more of those!`;
             <motion.button
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 z-[60] p-4 bg-black border border-neutral-800 hover:border-purple-500 text-purple-500 shadow-2xl transition-all group"
+                onClick={() => setIsOpen(!isOpen)}
+                className="fixed bottom-6 right-6 z-[60] flex items-center gap-3 px-4 py-4 bg-black/95 backdrop-blur-xl border border-purple-500/50 rounded-sm shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] hover:border-purple-400 group transition-all duration-300"
             >
-                <Terminal className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-purple-500 rounded-full animate-pulse border-2 border-black" />
+                {/* Logo Area */}
+                <div className="flex items-center justify-center mr-1">
+                    <span className="text-2xl font-mono font-bold text-purple-500 group-hover:text-purple-400 transition-colors leading-none pt-1">
+                        &gt;_
+                    </span>
+                </div>
+
+                {/* Text Content */}
+                <div className="flex flex-col items-start gap-0.5">
+                    <div className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_5px_rgba(34,197,94,0.8)]" />
+                        <span className="text-[10px] text-neutral-500 font-mono font-bold leading-none tracking-wider group-hover:text-neutral-400">
+                            WARRIOR_OS
+                        </span>
+                    </div>
+                    <span className="text-sm text-purple-200 font-mono font-bold uppercase tracking-widest group-hover:text-white transition-colors">
+                        SYSTEM_CONSOLE
+                    </span>
+                </div>
+
+                {/* Chevron */}
+                <ChevronRight className="w-4 h-4 text-neutral-700 group-hover:text-purple-400 group-hover:translate-x-1 transition-all ml-1" />
             </motion.button>
 
             {/* Terminal Window */}

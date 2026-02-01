@@ -7,6 +7,7 @@ import { clientProjects, labProjects } from "./data/projects";
 import profilePic from "@/assets/images/profile.jpg";
 import { blogs } from "./data/library";
 import { communities } from "./data/communities";
+import { mysqlRoadmap, redisRoadmap, djangoRoadmap, systemDesignRoadmap } from "@/data/resources";
 import desiDiariesLogo from "./assets/logos/desi-diaries.png";
 
 import Home from "./pages/Home";
@@ -19,6 +20,7 @@ import Projects from "./pages/Projects";
 import Communities from "./pages/Communities";
 import Library from "./pages/Library";
 import DSARoadmap from "./pages/DSARoadmap";
+import OneShotPage from "./pages/OneShotPage";
 import Links from "./pages/Links";
 import Custom404 from "./pages/404";
 import TerminalWidget from "./components/TerminalWidget";
@@ -73,6 +75,10 @@ export default function App() {
         <Route path="/communities" element={<Communities />} />
         <Route path="/library" element={<Library />} />
         <Route path="/library/dsa-roadmap" element={<DSARoadmap />} />
+        <Route path="/library/mysql-one" element={<OneShotPage data={mysqlRoadmap} />} />
+        <Route path="/library/redis-one" element={<OneShotPage data={redisRoadmap} />} />
+        <Route path="/library/django-orm-one" element={<OneShotPage data={djangoRoadmap} />} />
+        <Route path="/library/system-design" element={<OneShotPage data={systemDesignRoadmap} />} />
         <Route path="/links" element={<Links />} />
         <Route path="*" element={<Custom404 />} />
       </Routes>
