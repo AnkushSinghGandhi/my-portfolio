@@ -108,8 +108,24 @@ const safeApiCall = async (apiFunction) => {
     }
 };
 
+// Simple hash function for caching keys
+const getContextHash = (context) => {
+    if (!context) return "general";
+    let hash = 0;
+    for (let i = 0; i < context.length; i++) {
+        const char = context.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash |= 0;
+    }
+    return Math.abs(hash).toString(16);
+};
+
 export const generateQuiz = async (context) => {
     if (!model) throw new Error("Gemini API Key not set");
+
+    const cacheKey = `ai_cache_quiz_${getContextHash(context)}`;
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) return JSON.parse(cached);
 
     // Demo mode - return pre-generated content
     if (useDemoMode) {
@@ -162,7 +178,9 @@ export const generateQuiz = async (context) => {
     try {
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        return cleanAndParseJSON(response.text());
+        const data = cleanAndParseJSON(response.text());
+        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+        return data;
     } catch (error) {
         console.error("Quiz Generation Error:", error);
         throw new Error(classifyError(error));
@@ -171,6 +189,10 @@ export const generateQuiz = async (context) => {
 
 export const generateRoadmap = async (context) => {
     if (!model) throw new Error("Gemini API Key not set");
+
+    const cacheKey = `ai_cache_roadmap_${getContextHash(context)}`;
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) return JSON.parse(cached);
 
     // Demo mode
     if (useDemoMode) {
@@ -205,7 +227,9 @@ export const generateRoadmap = async (context) => {
     try {
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        return cleanAndParseJSON(response.text());
+        const data = cleanAndParseJSON(response.text());
+        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+        return data;
     } catch (error) {
         console.error("Roadmap Generation Error:", error);
         throw new Error(classifyError(error));
@@ -214,6 +238,10 @@ export const generateRoadmap = async (context) => {
 
 export const generatePathfinder = async (context) => {
     if (!model) throw new Error("Gemini API Key not set");
+
+    const cacheKey = `ai_cache_pathfinder_${getContextHash(context)}`;
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) return JSON.parse(cached);
 
     // Demo mode
     if (useDemoMode) {
@@ -251,28 +279,28 @@ export const generatePathfinder = async (context) => {
     try {
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        return cleanAndParseJSON(response.text());
+        const data = cleanAndParseJSON(response.text());
+        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+        return data;
     } catch (error) {
         console.error("Pathfinder Generation Error:", error);
         throw new Error(classifyError(error));
     }
 };
 
-export const generateTutorResponse = async (history, message, context) => {
+export const generateTutorStream = async (history, message, context, onChunk) => {
     if (!model) throw new Error("Gemini API Key not set");
 
     if (useDemoMode) {
-        return "This is a demo response from the AI Expert. I can explain concepts, debug code, or help you practice! (Real AI is disabled in demo mode)";
+        onChunk("This is a demo response from the AI Expert. I can explain concepts, debug code, or help you practice! (Real AI is disabled in demo mode)");
+        return;
     }
 
-    // Construct the chat history for the model
-    // Note: Gemini API expects 'user' and 'model' roles.
     const chatHistory = history.map(msg => ({
         role: msg.role === 'user' ? 'user' : 'model',
         parts: [{ text: msg.content }]
     }));
 
-    // Add context system instruction if it's the start of the chat
     const systemInstruction = `
     You are an expert personalized AI Expert for a developer portfolio.
     Your goal is to help the user understand the technical concepts presented in this portfolio.
@@ -285,30 +313,25 @@ export const generateTutorResponse = async (history, message, context) => {
     Guidelines:
     - Be encouraging, concise, and technical but accessible.
     - Use Markdown for code snippets.
-    - If the user asks about the portfolio owner (Ankush), speak positively about his work based on the context.
     - Focus on educational value.
   `;
 
     try {
         const chat = model.startChat({
             history: [
-                {
-                    role: "user",
-                    parts: [{ text: systemInstruction }]
-                },
-                {
-                    role: "model",
-                    parts: [{ text: "Understood. I am ready to act as an expert technical tutor based on the provided context." }]
-                },
+                { role: "user", parts: [{ text: systemInstruction }] },
+                { role: "model", parts: [{ text: "Understood. I am ready to act as an expert technical tutor based on the provided context." }] },
                 ...chatHistory
             ]
         });
 
-        const result = await chat.sendMessage(message);
-        const response = await result.response;
-        return response.text();
+        const result = await chat.sendMessageStream(message);
+        for await (const chunk of result.stream) {
+            const chunkText = chunk.text();
+            onChunk(chunkText);
+        }
     } catch (error) {
-        console.error("Tutor Chat Error:", error);
+        console.error("Streaming Error:", error);
         throw new Error(classifyError(error));
     }
 };
