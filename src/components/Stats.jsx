@@ -13,8 +13,8 @@ export default function Stats() {
       initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="relative flex flex-col lg:flex-col items-center lg:items-end text-center lg:text-right gap-8 
-                 sm:flex-row sm:justify-center sm:gap-6"
+      className="relative flex flex-col lg:flex-col items-center lg:items-end text-center lg:text-right gap-6 md:gap-8 
+                 xs:flex-row xs:justify-center xs:gap-6 w-full"
     >
       {/* Vertical Divider - only on desktop */}
       <div className="hidden lg:block absolute left-0 lg:-left-8 top-0 h-full w-[2px] bg-gray-700 opacity-60"></div>

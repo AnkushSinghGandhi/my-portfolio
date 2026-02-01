@@ -42,10 +42,10 @@ export default function Hero() {
                 <span className="text-xs font-medium text-gray-300 tracking-wide uppercase">Available for projects</span>
               </div>
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
+            <h1 className="text-2xl md:text-5xl font-bold tracking-tight text-white">
               ANKUSH SINGH GANDHI
             </h1>
-            <h2 className="text-4xl md:text-6xl leading-tight text-white">
+            <h2 className="text-3xl md:text-6xl leading-tight text-white">
               <span className="font-extrabold tracking-tight text-gray-300">
                 SCALING IDEAS
               </span>{" "}
@@ -58,9 +58,9 @@ export default function Hero() {
             clean architecture, and modern web solutions that last.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
-            <Link to="/contact">
-              <button className="group relative flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-8 md:px-10 py-4 md:py-5 font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/40 border-0">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2 px-4 sm:px-0">
+            <Link to="/contact" className="w-full sm:w-auto">
+              <button className="w-full group relative flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-8 md:px-10 py-4 md:py-5 font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/40 border-0">
                 {/* Shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
 
@@ -68,8 +68,8 @@ export default function Hero() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
               </button>
             </Link>
-            <Link to="/experience">
-              <button className="group relative flex items-center justify-center gap-3 bg-transparent border border-white/20 text-gray-300 px-8 md:px-10 py-4 md:py-5 font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase hover:bg-white/5 hover:text-white transition-all duration-300">
+            <Link to="/experience" className="w-full sm:w-auto">
+              <button className="w-full group relative flex items-center justify-center gap-3 bg-transparent border border-white/20 text-gray-300 px-8 md:px-10 py-4 md:py-5 font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase hover:bg-white/5 hover:text-white transition-all duration-300">
                 <span className="relative z-10">View My Experience</span>
               </button>
             </Link>
