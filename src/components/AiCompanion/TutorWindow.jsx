@@ -77,7 +77,7 @@ const TutorWindow = ({ context }) => {
                 const lang = match ? match[1] : '';
                 const code = match ? match[2] : part.slice(3, -3);
                 return (
-                    <div key={index} className="my-3 bg-zinc-950 rounded-lg overflow-hidden border border-zinc-800">
+                    <div key={index} className="my-3 bg-zinc-950 rounded-none overflow-hidden border border-zinc-800">
                         {lang && <div className="px-3 py-1 bg-zinc-900 text-xs text-zinc-400 border-b border-zinc-800">{lang}</div>}
                         <pre className="p-3 overflow-x-auto text-sm font-mono text-zinc-300">
                             {code}
@@ -100,27 +100,26 @@ const TutorWindow = ({ context }) => {
     };
 
     return (
-        <div className="flex flex-col h-full max-w-3xl mx-auto">
-
+        <div className="flex flex-col h-full max-w-3xl mx-auto font-mono">
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto space-y-6 pr-2 min-h-[300px]">
+            <div className="flex-1 overflow-y-auto space-y-4 pr-2 min-h-[300px]">
                 {messages.map((msg, idx) => (
                     <div
                         key={idx}
-                        className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
+                        className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
                     >
                         <div className={`
-                            w-8 h-8 rounded-full flex items-center justify-center shrink-0
-                            ${msg.role === 'user' ? 'bg-zinc-200 dark:bg-zinc-800' : 'bg-purple-600'}
+                            w-6 h-6 flex items-center justify-center shrink-0 border
+                            ${msg.role === 'user' ? 'bg-zinc-800 border-zinc-700' : 'bg-purple-900/40 border-purple-500/50'}
                         `}>
-                            {msg.role === 'user' ? <User className="w-5 h-5 text-zinc-600 dark:text-zinc-400" /> : <Bot className="w-5 h-5 text-white" />}
+                            {msg.role === 'user' ? <User className="w-3 h-3 text-zinc-400" /> : <Bot className="w-3 h-3 text-purple-400" />}
                         </div>
 
                         <div className={`
-                            max-w-[85%] rounded-2xl px-5 py-4 shadow-sm
+                            max-w-[90%] px-4 py-3 border
                             ${msg.role === 'user'
-                                ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 rounded-tr-none'
-                                : 'bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-300 rounded-tl-none'
+                                ? 'bg-zinc-900/50 border-white/5 text-zinc-300'
+                                : 'bg-black border-purple-500/20 text-zinc-300'
                             }
                         `}>
                             {renderContent(msg.content)}
@@ -129,14 +128,16 @@ const TutorWindow = ({ context }) => {
                 ))}
 
                 {loading && (
-                    <div className="flex gap-4">
-                        <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center shrink-0">
-                            <Sparkles className="w-4 h-4 text-white animate-pulse" />
+                    <div className="flex gap-3">
+                        <div className="w-6 h-6 bg-purple-900/40 border border-purple-500/50 flex items-center justify-center shrink-0">
+                            <Sparkles className="w-3 h-3 text-purple-400 animate-pulse" />
                         </div>
-                        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl rounded-tl-none px-5 py-4 flex items-center gap-2">
-                            <span className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                            <span className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                            <span className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce"></span>
+                        <div className="bg-black border border-white/5 px-4 py-3 flex items-center gap-2">
+                            <div className="flex gap-1">
+                                <span className="w-1.5 h-1.5 bg-zinc-600 animate-pulse"></span>
+                                <span className="w-1.5 h-1.5 bg-zinc-600 animate-pulse [animation-delay:0.2s]"></span>
+                                <span className="w-1.5 h-1.5 bg-zinc-600 animate-pulse [animation-delay:0.4s]"></span>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -144,39 +145,44 @@ const TutorWindow = ({ context }) => {
             </div>
 
             {/* Input Area */}
-            <div className="mt-6 border-t border-zinc-200 dark:border-zinc-800 pt-4">
-                <div className="relative flex items-end gap-2">
+            <div className="mt-6 border-t border-white/5 pt-4">
+                <div className="relative flex items-end gap-3">
                     <button
                         onClick={clearChat}
-                        className="p-3 text-zinc-400 hover:text-red-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl transition-colors"
-                        title="Clear Chat"
+                        className="p-3 text-zinc-600 hover:text-red-500 hover:bg-red-500/5 transition-colors border border-transparent hover:border-red-500/20"
+                        title="Clear Session"
                     >
-                        <Trash2 className="w-5 h-5" />
+                        <Trash2 className="w-4 h-4" />
                     </button>
 
                     <div className="relative flex-1">
+                        <div className="absolute left-4 top-4 text-purple-500/50 select-none">{">"}</div>
                         <textarea
                             ref={inputRef}
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Ask a question..."
-                            className="w-full bg-zinc-100 dark:bg-zinc-800 border-0 rounded-2xl px-4 py-3 pr-12 text-zinc-900 dark:text-white focus:ring-2 focus:ring-purple-500 resize-none min-h-[50px] max-h-[150px]"
+                            placeholder="Type a command or question..."
+                            className="w-full bg-black border border-white/10 rounded-none px-8 py-3 pr-12 text-zinc-100 placeholder:text-zinc-700 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 resize-none min-h-[52px]"
                             rows={1}
-                            style={{ height: '52px' }} // fixed initial height
                         />
                         <button
                             onClick={handleSend}
                             disabled={!input.trim() || loading}
-                            className="absolute right-2 bottom-2 p-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 disabled:opacity-50 disabled:hover:bg-purple-600 transition-colors"
+                            className="absolute right-2 bottom-2 p-2 bg-purple-600/10 text-purple-400 border border-purple-500/30 hover:bg-purple-600 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent transition-all"
                         >
-                            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                            {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : <Send className="w-3 h-3" />}
                         </button>
                     </div>
                 </div>
-                <p className="text-center text-xs text-zinc-400 mt-2">
-                    AI can make mistakes. Verify important code.
-                </p>
+                <div className="flex justify-between items-center mt-3 px-1">
+                    <p className="text-[10px] text-zinc-600 uppercase tracking-tighter">
+                        SYSTEM_STATUS: READY // AI_MODEL: GEMINI_1.5_FLASH
+                    </p>
+                    <p className="text-[10px] text-zinc-500 italic">
+                        Context-aware mode active
+                    </p>
+                </div>
             </div>
         </div>
     );
