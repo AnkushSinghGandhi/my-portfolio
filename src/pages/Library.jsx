@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { cheatsheets, blogs, reads, writingLinks } from "@/data/library";
-import { ArrowUpRight, Linkedin, ExternalLink, Youtube, FileText, Rocket, Database, Zap, Container, LayoutTemplate } from "lucide-react";
+import { ArrowUpRight, Linkedin, ExternalLink, Youtube, FileText, Rocket, Database, Zap, Container, LayoutTemplate, Sparkles } from "lucide-react";
 import { FaDev } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -358,7 +358,20 @@ function LibraryCard({ item, isLocked, isFeatured, onAiAnalyze }) {
                     <Icon className={`w-8 h-8 text-neutral-400 ${theme.accent} transition-colors`} />
                 </div>
                 {!isLocked && (
-                    <ArrowUpRight className={`w-6 h-6 text-neutral-700 group-hover:text-white transition-colors`} />
+                    <div className="flex gap-2">
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                onAiAnalyze(e, item);
+                            }}
+                            className="p-2 hover:bg-white/10 rounded-full transition-all group/ai"
+                            title="AI Analysis"
+                        >
+                            <Sparkles className="w-5 h-5 text-gray-500 group-hover:text-purple-400 group-hover/ai:scale-110 transition-all" />
+                        </button>
+                        <ArrowUpRight className={`w-6 h-6 text-neutral-700 group-hover:text-white transition-colors`} />
+                    </div>
                 )}
             </div>
 

@@ -28,8 +28,8 @@ export default function OneShotPage({ data }) {
         }
     };
 
-    const handleAiAnalyze = () => {
-        const context = `
+    const getSummaryContext = () => {
+        return `
       Title: ${data.title}
       Subtitle: ${data.subtitle}
       Description: ${data.intro}
@@ -43,7 +43,17 @@ export default function OneShotPage({ data }) {
         ${tier.topics.map(t => `- ${t.title}: ${t.items.join(", ")}`).join("\n")}
       `).join("\n\n")}
     `;
-        setAiContext(context);
+    };
+
+    // Initialize context on mount
+    React.useEffect(() => {
+        setAiContext(getSummaryContext());
+    }, []);
+
+    const handleAiAnalyze = () => {
+        setAiContext(getSummaryContext());
+        // Simple event to signal AiToolbox to open
+        window.dispatchEvent(new CustomEvent("openAiToolbox", { detail: { mode: "tutor" } }));
     };
 
     return (

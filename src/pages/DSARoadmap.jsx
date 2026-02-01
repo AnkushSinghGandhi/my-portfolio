@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { dsaRoadmap } from "@/data/resources";
 import { CheckCircle2, Circle, Trophy, ArrowRight, Sparkles, ArrowUpRight, ExternalLink, CheckCircle, BookOpen } from "lucide-react";
@@ -13,7 +13,6 @@ export default function DSARoadmap() {
     const [aiContext, setAiContext] = useState("");
 
     const toggleNode = (nodeId) => {
-        // ... existing logic ...
         const newcompleted = new Set(completedNodes);
         if (newcompleted.has(nodeId)) {
             newcompleted.delete(nodeId);
@@ -22,13 +21,14 @@ export default function DSARoadmap() {
         }
         setCompletedNodes(newcompleted);
 
-        // Check for milestone completion logic (omitted, assuming it's simpler)
-        if (newcompleted.size === 10) setShowConfetti(true); // Example
+        if (newcompleted.size > 0 && newcompleted.size % 10 === 0) {
+            setShowConfetti(true);
+            setTimeout(() => setShowConfetti(false), 5000);
+        }
     };
 
-    const handleAiAnalyze = () => {
-        // Convert roadmap to text context
-        const context = `
+    const getSummaryContext = () => {
+        return `
       Title: DSA One-Shot Roadmap
       Description: A priority-based roadmap for cracking interviews.
       Current Progress: ${completedNodes.size} items completed.
@@ -41,7 +41,17 @@ export default function DSARoadmap() {
         ${tier.topics.map(t => `- ${t.title}: ${t.items.join(", ")}`).join("\n")}
       `).join("\n\n")}
     `;
-        setAiContext(context);
+    };
+
+    // Initialize context on mount
+    useEffect(() => {
+        setAiContext(getSummaryContext());
+    }, []);
+
+    const handleAiAnalyze = () => {
+        setAiContext(getSummaryContext());
+        // Simple event to signal AiToolbox to open
+        window.dispatchEvent(new CustomEvent("openAiToolbox", { detail: { mode: "tutor" } }));
     };
 
     return (
