@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { generatePathfinder } from "../../lib/gemini";
-import { Loader2, ArrowRightCircle, Code, Lightbulb, ExternalLink } from "lucide-react";
+import { generatePathfinder, enableDemoMode } from "../../lib/gemini";
+import { Loader2, ArrowRightCircle, Code, Lightbulb, RefreshCw } from "lucide-react";
 
 const PathfinderWindow = ({ context }) => {
     const [loading, setLoading] = useState(true);
@@ -41,19 +41,18 @@ const PathfinderWindow = ({ context }) => {
                 <div className="flex items-center justify-center gap-4">
                     <button
                         onClick={loadPathInfo}
-                        className="flex items-center gap-2 px-4 py-2 bg-neutral-800 text-neutral-300 rounded hover:bg-neutral-700 transition border border-neutral-700 font-mono text-sm"
+                        className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-zinc-400 border border-zinc-800 hover:border-zinc-700 hover:text-white transition-all font-mono text-sm"
                     >
-                        <Loader2 className="w-4 h-4" /> Try Again
+                        <RefreshCw className="w-4 h-4" /> [RETRY_REQUEST]
                     </button>
                     <button
                         onClick={() => {
-                            const { enableDemoMode } = require('../../lib/gemini');
                             enableDemoMode();
                             loadPathInfo();
                         }}
-                        className="flex items-center gap-2 px-4 py-2 bg-green-600/20 text-green-400 rounded hover:bg-green-600/30 transition border border-green-500/30 font-mono text-sm"
+                        className="flex items-center gap-2 px-4 py-2 bg-purple-900/20 text-purple-400 border border-purple-500/30 hover:bg-purple-600 hover:text-white transition-all font-mono text-sm"
                     >
-                        <Lightbulb className="w-4 h-4" /> Try Demo
+                        <Lightbulb className="w-4 h-4" /> [LOAD_DEMO_DATA]
                     </button>
                 </div>
             </div>
@@ -61,50 +60,53 @@ const PathfinderWindow = ({ context }) => {
     }
 
     return (
-        <div className="max-w-xl mx-auto space-y-8">
+        <div className="max-w-xl mx-auto space-y-10 font-mono">
 
             {/* What to Learn Next */}
-            <section className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/10 dark:to-emerald-900/10 p-6 rounded-2xl border border-green-100 dark:border-green-900/30">
-                <div className="flex items-center gap-2 mb-3 text-green-700 dark:text-green-400">
-                    <ArrowRightCircle className="w-5 h-5" />
-                    <span className="font-bold uppercase tracking-wider text-xs">Recommended Next Step</span>
+            <section className="bg-black border border-green-500/20 p-6 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-1 bg-green-500/10 text-green-500 text-[8px] font-bold tracking-tighter uppercase">
+                    REC_SYSTEM_V4
                 </div>
-                <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-2">
+                <div className="flex items-center gap-3 mb-4 text-green-500">
+                    <ArrowRightCircle className="w-4 h-4" />
+                    <span className="font-bold uppercase tracking-widest text-[10px]">Recommended_Next_Step</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
                     {data.nextTopic?.title || "Advanced Concepts"}
                 </h3>
-                <p className="text-zinc-600 dark:text-zinc-300">
+                <p className="text-zinc-400 text-sm leading-relaxed italic border-l-2 border-green-500/40 pl-4">
                     {data.nextTopic?.description}
                 </p>
             </section>
 
             {/* Project Ideas */}
             <section>
-                <div className="flex items-center gap-2 mb-4 text-zinc-500 dark:text-zinc-400">
-                    <Lightbulb className="w-5 h-5" />
-                    <h4 className="font-semibold">Project Ideas to Build Now</h4>
+                <div className="flex items-center gap-3 mb-6 text-zinc-500 px-1 border-b border-white/5 pb-2">
+                    <Lightbulb className="w-4 h-4" />
+                    <h4 className="font-bold uppercase tracking-widest text-[10px]">Project_Ideation_Forge</h4>
                 </div>
 
                 <div className="grid gap-4">
                     {data.projects?.map((project, idx) => (
-                        <div key={idx} className="bg-white dark:bg-zinc-800 p-5 rounded-xl border border-zinc-200 dark:border-zinc-700 hover:shadow-lg transition-all group">
-                            <div className="flex justify-between items-start mb-2">
-                                <h5 className="font-bold text-lg dark:text-zinc-100 group-hover:text-purple-500 transition-colors">
+                        <div key={idx} className="bg-black p-6 border border-white/5 hover:border-purple-500/50 transition-all group relative">
+                            <div className="flex justify-between items-start mb-4">
+                                <h5 className="font-bold text-base text-white group-hover:text-purple-400 transition-colors uppercase tracking-wide">
                                     {project.title}
                                 </h5>
                                 <span className={`
-                            px-2 py-1 rounded text-xs font-semibold
-                            ${project.difficulty === 'Beginner' ? 'bg-green-100 text-green-700' : ''}
-                            ${project.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' : ''}
-                            ${project.difficulty === 'Advanced' ? 'bg-red-100 text-red-700' : ''}
-                          `}>
-                                    {project.difficulty}
+                                    px-2 py-0.5 text-[8px] font-bold uppercase tracking-tighter border
+                                    ${project.difficulty === 'Beginner' ? 'border-green-500/50 text-green-500' : ''}
+                                    ${project.difficulty === 'Intermediate' ? 'border-yellow-500/50 text-yellow-500' : ''}
+                                    ${project.difficulty === 'Advanced' ? 'border-red-500/50 text-red-500' : ''}
+                                `}>
+                                    [{project.difficulty.substring(0, 3)}]
                                 </span>
                             </div>
-                            <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+                            <p className="text-xs text-zinc-500 mb-6 leading-relaxed">
                                 {project.description}
                             </p>
-                            <button className="text-sm font-medium text-zinc-400 group-hover:text-purple-500 flex items-center gap-1 transition-colors">
-                                <Code className="w-4 h-4" /> Start Building
+                            <button className="text-[10px] font-bold text-zinc-600 group-hover:text-white flex items-center gap-2 transition-all uppercase tracking-widest">
+                                <Code className="w-3 h-3" /> [Start_Initiative]
                             </button>
                         </div>
                     ))}
