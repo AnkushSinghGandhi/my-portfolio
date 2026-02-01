@@ -13,11 +13,11 @@ export default function Communities({ isPage }) {
 
   return (
     <section
-      className={`relative px-6 sm:px-12 lg:px-20 py-24 bg-black text-gray-100 overflow-hidden ${isPage ? "pt-32 sm:pt-44" : ""
+      className={`relative px-6 sm:px-12 lg:px-20 py-24 bg-white text-neutral-900 overflow-hidden ${isPage ? "pt-32 sm:pt-44" : ""
         }`}
     >
       {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header - Terminal Style */}
@@ -30,12 +30,12 @@ export default function Communities({ isPage }) {
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
               <span className="w-2 h-2 bg-blue-500 animate-pulse" />
-              <span className="text-[10px] font-mono text-blue-400 tracking-[0.2em] uppercase">system.community_sync</span>
+              <span className="text-[10px] font-mono text-blue-600 tracking-[0.2em] uppercase">system.community_sync</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4 text-black">
               SYNC_NETWORK
             </h1>
-            <p className="text-gray-500 font-mono text-xs sm:text-sm leading-relaxed max-w-2xl">
+            <p className="text-neutral-500 font-mono text-xs sm:text-sm leading-relaxed max-w-2xl">
               // ARCHIVED LOGS OF ACTIVE MEMBERSHIPS, OPEN SOURCE CONTRIBUTIONS, AND ECOSYSTEM INTEGRATIONS.
               SYNCHRONIZING WITH GLOBAL DEVELOPER NODES.
             </p>
@@ -55,15 +55,15 @@ export default function Communities({ isPage }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-24 p-6 bg-neutral-900/20 border border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-6"
+          className="mb-24 p-6 bg-neutral-900 border border-neutral-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg"
         >
           <div className="flex items-center gap-4">
             <div className="p-3 bg-blue-500/10 border border-blue-500/20">
               <Zap className="w-5 h-5 text-blue-400" />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest">Support Core Development</p>
-              <p className="text-[10px] font-mono text-gray-500">// FUELING SYSTEM INNOVATION & OPEN SOURCE FLOWS</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-white">Support Core Development</p>
+              <p className="text-[10px] font-mono text-neutral-400">// FUELING SYSTEM INNOVATION & OPEN SOURCE FLOWS</p>
             </div>
           </div>
           <SponsorButtons />
@@ -72,9 +72,9 @@ export default function Communities({ isPage }) {
         {/* SECTION 01: PHYSICAL_ASSET_RECON */}
         <div className="mb-24">
           <div className="flex items-center gap-4 mb-10">
-            <span className="text-[10px] font-mono text-pink-500">01</span>
-            <h2 className="text-xl font-bold tracking-[0.2em] text-white uppercase">Physical_Asset_Recon</h2>
-            <div className="h-[1px] flex-1 bg-neutral-800" />
+            <span className="text-[10px] font-mono text-pink-600">01</span>
+            <h2 className="text-xl font-bold tracking-[0.2em] text-neutral-900 uppercase">Physical_Asset_Recon</h2>
+            <div className="h-[1px] flex-1 bg-neutral-300" />
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -84,7 +84,7 @@ export default function Communities({ isPage }) {
                 initial={{ opacity: 0, scale: 0.98 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="group relative bg-neutral-900/40 border border-neutral-800 hover:border-pink-500/30 overflow-hidden transition-all duration-500 cursor-pointer"
+                className="group relative bg-neutral-900 border border-neutral-800 hover:border-pink-500/50 overflow-hidden transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl"
                 onClick={() => setSelectedSwag(asset)}
               >
                 <div className="aspect-[16/9] overflow-hidden relative">
@@ -123,9 +123,9 @@ export default function Communities({ isPage }) {
         {/* SECTION 02: NETWORK_SYNCHRONIZATION */}
         <div className="mb-24">
           <div className="flex items-center gap-4 mb-10">
-            <span className="text-[10px] font-mono text-blue-500">02</span>
-            <h2 className="text-xl font-bold tracking-[0.2em] text-white uppercase">Network_Synchronization</h2>
-            <div className="h-[1px] flex-1 bg-neutral-800" />
+            <span className="text-[10px] font-mono text-blue-600">02</span>
+            <h2 className="text-xl font-bold tracking-[0.2em] text-neutral-900 uppercase">Network_Synchronization</h2>
+            <div className="h-[1px] flex-1 bg-neutral-300" />
           </div>
 
           <div className="space-y-6">
@@ -175,14 +175,14 @@ function SwagGalleryModal({ isOpen, onClose, swag }) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden max-h-[90vh] flex flex-col"
+            className="relative w-full max-w-5xl bg-neutral-900 border-2 border-neutral-800 overflow-hidden max-h-[90vh] flex flex-col shadow-2xl"
           >
             {/* Header */}
             <div className="p-6 border-b border-neutral-800 flex items-center justify-between sticky top-0 bg-neutral-900/95 z-10 backdrop-blur">
               <div>
                 <h3 className="text-xl font-bold text-white uppercase tracking-tight flex items-center gap-3">
                   {swag.name}
-                  <span className="text-[10px] bg-pink-500/10 text-pink-400 px-2 py-0.5 rounded border border-pink-500/20 font-mono">
+                  <span className="text-[10px] bg-pink-500/10 text-pink-400 px-2 py-0.5 border border-pink-500/20 font-mono">
                     GALLERY_VIEW
                   </span>
                 </h3>
@@ -190,7 +190,7 @@ function SwagGalleryModal({ isOpen, onClose, swag }) {
               </div>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-neutral-800 rounded-lg transition-colors group"
+                className="p-2 hover:bg-neutral-800 transition-colors group"
               >
                 <X className="w-6 h-6 text-gray-400 group-hover:text-white" />
               </button>
@@ -205,7 +205,7 @@ function SwagGalleryModal({ isOpen, onClose, swag }) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.1 }}
-                    className={`relative rounded-lg overflow-hidden border border-neutral-800 group ${idx === 0 ? "md:col-span-2 md:row-span-2" : ""
+                    className={`relative overflow-hidden border border-neutral-800 group ${idx === 0 ? "md:col-span-2 md:row-span-2" : ""
                       } ${idx === 3 ? "md:col-span-2" : ""}`}
                   >
                     <CachedImage
@@ -232,7 +232,7 @@ function SyncLogCard({ community, index }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="group relative flex flex-col md:flex-row bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-all duration-500 overflow-hidden"
+      className="group relative flex flex-col md:flex-row bg-neutral-900 border border-neutral-800 hover:border-neutral-600 transition-all duration-500 overflow-hidden shadow-xl hover:shadow-2xl"
     >
       <div className="hidden md:block w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 opacity-20 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_10px_rgba(59,130,246,0.3)]" />
 

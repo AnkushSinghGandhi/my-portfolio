@@ -6,9 +6,9 @@ import CachedImage from "@/components/CachedImage";
 
 export default function AboutMe() {
   return (
-    <main className="min-h-screen bg-black text-gray-100 font-sans flex flex-col justify-center px-6 pt-40 pb-20 relative overflow-hidden">
+    <main className="min-h-screen bg-white text-neutral-900 font-sans flex flex-col justify-center px-6 pt-40 pb-20 relative overflow-hidden">
       {/* Subtle Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
         {/* Profile Identity Module */}
@@ -57,14 +57,14 @@ export default function AboutMe() {
               <span className="w-2 h-2 bg-purple-500 animate-pulse" />
               <span className="text-[10px] font-mono text-purple-600 tracking-[0.2em] uppercase">system.profile_bio</span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 text-white tracking-tight">
+            <h1 className="text-5xl font-bold mb-6 text-black tracking-tight">
               ABOUT_ME
             </h1>
-            <p className="text-gray-400 text-lg leading-relaxed mb-4 font-light">
-              Hi, I’m <span className="text-white font-medium">Ankush Singh Gandhi</span>.
+            <p className="text-neutral-500 text-lg leading-relaxed mb-4 font-light">
+              Hi, I’m <span className="text-neutral-900 font-medium">Ankush Singh Gandhi</span>.
             </p>
-            <p className="text-gray-400 text-lg leading-relaxed font-light">
-              A passionate <span className="text-gray-200">Python Backend Developer</span> architecting scalable, secure, and high-performance systems. I specialize in building robust APIs, microservices, and reliable cloud-native solutions that drive business logic.
+            <p className="text-neutral-500 text-lg leading-relaxed font-light">
+              A passionate <span className="text-black font-semibold">Python Backend Developer</span> architecting scalable, secure, and high-performance systems. I specialize in building robust APIs, microservices, and reliable cloud-native solutions that drive business logic.
             </p>
           </div>
 
@@ -83,10 +83,10 @@ export default function AboutMe() {
               ].map((item, i) => (
                 <div key={i} className="flex items-center group">
                   <item.icon className="w-5 h-5 text-neutral-600 mr-4 group-hover:text-purple-500 transition-colors" />
-                  <span className="text-sm font-mono text-neutral-500 w-44 shrink-0 group-hover:text-neutral-300 transition-colors">
+                  <span className="text-sm font-mono text-neutral-500 w-44 shrink-0 group-hover:text-neutral-900 transition-colors">
                     {item.label}
                   </span>
-                  <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                  <span className="text-sm text-neutral-800 group-hover:text-black transition-colors">
                     {item.val}
                   </span>
                 </div>
@@ -101,10 +101,10 @@ export default function AboutMe() {
             rel="noopener noreferrer"
             className="block group"
           >
-            <div className="bg-neutral-900/50 border border-neutral-800 p-5 flex items-center justify-between hover:border-purple-500/50 hover:bg-neutral-900 transition-all duration-300">
+            <div className="bg-neutral-900 border border-neutral-800 p-5 flex items-center justify-between hover:border-purple-500/50 hover:bg-black transition-all duration-300 shadow-xl">
               <div className="flex items-center gap-4">
-                <div className="p-2 bg-neutral-800 rounded group-hover:bg-purple-900/20 transition-colors">
-                  <SiLeetcode className="h-6 w-6 text-neutral-400 group-hover:text-purple-400 transition-colors" />
+                <div className="p-2 bg-neutral-800 rounded group-hover:bg-[#FFA116]/10 transition-colors">
+                  <SiLeetcode className="h-6 w-6 text-[#FFA116] transition-colors" />
                 </div>
                 <div>
                   <div className="text-xs font-mono text-neutral-500 mb-1">COMPETITIVE PROGRAMMING</div>

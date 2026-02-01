@@ -50,9 +50,9 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative min-h-screen pt-32 pb-20 px-6 sm:px-12 lg:px-20 bg-black text-white font-sans overflow-hidden">
+    <section className="relative min-h-screen pt-32 pb-20 px-6 sm:px-12 lg:px-20 bg-white text-neutral-900 font-sans overflow-hidden">
       {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header - Terminal Style */}
@@ -60,17 +60,17 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-neutral-800 pb-12"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-neutral-300 pb-12"
         >
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
               <span className="w-2 h-2 bg-blue-500 animate-pulse" />
-              <span className="text-[10px] font-mono text-blue-400 tracking-[0.2em] uppercase">system.comm_protocol</span>
+              <span className="text-[10px] font-mono text-blue-600 tracking-[0.2em] uppercase">system.comm_protocol</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4 text-black">
               CONNECT INTERFACE
             </h1>
-            <p className="text-gray-500 font-mono text-xs sm:text-sm leading-relaxed max-w-2xl">
+            <p className="text-neutral-500 font-mono text-xs sm:text-sm leading-relaxed max-w-2xl">
               // INITIALIZING SECURE COMMUNICATION CHANNEL...
               PLEASE TRANSMIT YOUR REQUEST PACKET BELOW TO ESTABLISH A DIRECT LINK WITH THE CORE SYSTEMS.
             </p>
@@ -115,12 +115,12 @@ export default function Contact() {
               />
             </div>
 
-            <div className="mt-12 p-8 border border-neutral-800 bg-neutral-900/10 relative overflow-hidden group">
+            <div className="mt-12 p-8 border border-neutral-800 bg-neutral-900 relative overflow-hidden group shadow-lg">
               <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                 <ShieldCheck className="w-20 h-20" />
               </div>
               <h4 className="text-xs font-mono text-blue-400 mb-4 uppercase tracking-widest">Protocol Intelligence</h4>
-              <p className="text-xs text-gray-500 leading-relaxed font-mono">
+              <p className="text-xs text-gray-300 leading-relaxed font-mono">
                 // System identifies and prioritizes high-impact project requests.
                 Average response latency: &lt; 24h.
               </p>
@@ -142,7 +142,7 @@ export default function Contact() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, y: -20 }}
                   onSubmit={handleSubmit}
-                  className="space-y-6 bg-neutral-900/20 border border-neutral-800 p-8 sm:p-12 relative"
+                  className="space-y-6 bg-neutral-900 border border-neutral-800 p-8 sm:p-12 relative shadow-2xl"
                 >
                   <AnimatePresence>
                     {isSubmitting && (
@@ -220,7 +220,7 @@ export default function Contact() {
                       rows={5}
                       placeholder="[ENTER_MESSAGE_STREAMS...]"
                       required
-                      className="w-full bg-neutral-900/50 border border-neutral-800 px-4 py-4 text-sm font-mono text-white focus:border-blue-500 outline-none transition-colors placeholder:text-gray-600 rounded-none resize-none"
+                      className="w-full bg-black border border-neutral-800 px-4 py-4 text-sm font-mono text-white focus:border-blue-500 outline-none transition-colors placeholder:text-gray-500 rounded-none resize-none"
                     />
                   </div>
 
@@ -242,7 +242,7 @@ export default function Contact() {
                   key="contact-success"
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-neutral-900/20 border border-neutral-800 p-12 text-center relative flex flex-col items-center justify-center min-h-[500px]"
+                  className="bg-neutral-900 border border-neutral-800 p-12 text-center relative flex flex-col items-center justify-center min-h-[500px] shadow-2xl"
                 >
                   <div className="w-16 h-16 bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-8 rotate-45">
                     <ShieldCheck className="w-8 h-8 text-blue-400 -rotate-45" />
@@ -279,13 +279,13 @@ export default function Contact() {
 
 function AccessPoint({ icon: Icon, label, value, link }) {
   const Content = (
-    <div className="group flex items-center gap-5 p-4 bg-neutral-900/20 border border-neutral-800/50 hover:bg-neutral-900/60 hover:border-blue-500/30 transition-all">
-      <div className="p-3 bg-neutral-800/50 border border-neutral-700 group-hover:text-blue-400 transition-colors">
-        <Icon className="w-4 h-4" />
+    <div className="group flex items-center gap-5 p-4 bg-neutral-900 border border-neutral-800 hover:bg-black hover:border-blue-500/50 transition-all shadow-md">
+      <div className="p-3 bg-neutral-800 border border-neutral-700 text-white group-hover:text-blue-400 transition-colors">
+        <Icon className="w-5 h-5" />
       </div>
       <div>
-        <p className="text-[9px] font-mono text-gray-600 uppercase tracking-widest mb-1">{label}</p>
-        <p className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">{value}</p>
+        <p className="text-[9px] font-mono text-neutral-400 uppercase tracking-widest mb-1">{label}</p>
+        <p className="text-sm font-medium text-white group-hover:text-blue-200 transition-colors">{value}</p>
       </div>
     </div>
   );
@@ -296,8 +296,8 @@ function AccessPoint({ icon: Icon, label, value, link }) {
 function SystemInput({ icon: Icon, label, name, placeholder, value, onChange, type = "text" }) {
   return (
     <div className="space-y-3">
-      <label className="flex items-center gap-2 text-[10px] font-mono text-gray-400 uppercase tracking-widest">
-        <Icon className="w-3 h-3" /> {label}
+      <label className="flex items-center gap-2 text-[10px] font-mono text-gray-300 uppercase tracking-widest">
+        <Icon className="w-3 h-3 text-blue-400" /> {label}
       </label>
       <input
         type={type}
@@ -306,7 +306,7 @@ function SystemInput({ icon: Icon, label, name, placeholder, value, onChange, ty
         onChange={onChange}
         placeholder={placeholder}
         required
-        className="w-full bg-neutral-900/50 border border-neutral-800 px-4 py-3.5 text-sm font-mono text-white focus:border-blue-500 outline-none transition-colors placeholder:text-gray-600 rounded-none shadow-none"
+        className="w-full bg-black border border-neutral-800 px-4 py-3.5 text-sm font-mono text-white focus:border-blue-500 outline-none transition-colors placeholder:text-gray-500 rounded-none shadow-none"
       />
     </div>
   );

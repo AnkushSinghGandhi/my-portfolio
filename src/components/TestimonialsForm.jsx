@@ -53,9 +53,9 @@ export default function TestimonialsForm() {
   };
 
   return (
-    <section className="relative min-h-screen pt-32 pb-20 px-6 sm:px-12 lg:px-20 bg-black text-white font-sans overflow-hidden">
+    <section className="relative min-h-screen pt-32 pb-20 px-6 sm:px-12 lg:px-20 bg-white text-neutral-900 font-sans overflow-hidden">
       {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header Module */}
@@ -70,10 +70,10 @@ export default function TestimonialsForm() {
               <span className="w-2 h-2 bg-purple-500 animate-pulse" />
               <span className="text-[10px] font-mono text-purple-400 tracking-[0.2em] uppercase text-xs">system.log_submission</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4 text-black">
               EXPERIENCE LOG
             </h1>
-            <p className="text-gray-500 font-mono text-xs sm:text-sm leading-relaxed max-w-xl">
+            <p className="text-neutral-500 font-mono text-xs sm:text-sm leading-relaxed max-w-xl">
                             // AUTHORIZED FEEDBACK INTERFACE FOR SYSTEM VALIDATION.
               PLEASE SUBMIT YOUR EXPERIENCE LOG TO BE ARCHIVED IN THE SYSTEM CORE.
             </p>
@@ -97,22 +97,22 @@ export default function TestimonialsForm() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-4 space-y-8"
           >
-            <div className="p-6 bg-neutral-900/30 border border-neutral-800 relative group overflow-hidden">
+            <div className="p-6 bg-neutral-900 border border-neutral-800 relative group overflow-hidden shadow-md">
               <div className="absolute top-0 right-0 p-3 opacity-10">
-                <ShieldCheck className="w-12 h-12" />
+                <ShieldCheck className="w-12 h-12 text-white" />
               </div>
               <h3 className="text-xs font-mono text-purple-400 mb-4 uppercase tracking-widest">Guideline 01</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Experience logs are verified manually. Please use clear, professional language for system archiving.
               </p>
             </div>
 
-            <div className="p-6 bg-neutral-900/30 border border-neutral-800 relative group overflow-hidden">
+            <div className="p-6 bg-neutral-900 border border-neutral-800 relative group overflow-hidden shadow-md">
               <div className="absolute top-0 right-0 p-3 opacity-10">
-                <Database className="w-12 h-12" />
+                <Database className="w-12 h-12 text-white" />
               </div>
               <h3 className="text-xs font-mono text-purple-400 mb-4 uppercase tracking-widest">Guideline 02</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="text-sm text-gray-300 leading-relaxed">
                 Submitted logs are displayed in the "TESTIMONIALS" module of the public dashboard.
               </p>
             </div>
@@ -150,7 +150,7 @@ export default function TestimonialsForm() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, y: -20 }}
                   onSubmit={handleSubmit}
-                  className="bg-neutral-900/20 border border-neutral-800 p-8 sm:p-12 relative overflow-hidden"
+                  className="bg-neutral-900 border border-neutral-800 p-8 sm:p-12 relative overflow-hidden shadow-2xl"
                 >
                   {/* Submitting Overlay */}
                   <AnimatePresence>
@@ -184,8 +184,8 @@ export default function TestimonialsForm() {
                   <div className="grid md:grid-cols-2 gap-8 mb-8">
                     {/* AUTHOR_NAME */}
                     <div className="space-y-3">
-                      <label className="flex items-center gap-2 text-[10px] font-mono text-gray-400 uppercase tracking-widest">
-                        <User className="w-3 h-3" /> AUTHOR_NAME
+                      <label className="flex items-center gap-2 text-[10px] font-mono text-gray-300 uppercase tracking-widest">
+                        <User className="w-3 h-3 text-purple-400" /> AUTHOR_NAME
                       </label>
                       <input
                         type="text"
@@ -194,14 +194,14 @@ export default function TestimonialsForm() {
                         onChange={handleChange}
                         placeholder="[INPUT_NAME]"
                         required
-                        className="w-full bg-neutral-900/50 border border-neutral-800 px-4 py-3 text-sm font-mono text-white focus:border-purple-500 outline-none transition-colors placeholder:text-gray-500 rounded-none"
+                        className="w-full bg-black border border-neutral-800 px-4 py-3 text-sm font-mono text-white focus:border-purple-500 outline-none transition-colors placeholder:text-gray-500 rounded-none"
                       />
                     </div>
 
                     {/* EMAIL_ID */}
                     <div className="space-y-3">
-                      <label className="flex items-center gap-2 text-[10px] font-mono text-gray-400 uppercase tracking-widest">
-                        <Mail className="w-3 h-3" /> EMAIL_ID
+                      <label className="flex items-center gap-2 text-[10px] font-mono text-gray-300 uppercase tracking-widest">
+                        <Mail className="w-3 h-3 text-purple-400" /> EMAIL_ID
                       </label>
                       <input
                         type="email"
@@ -210,15 +210,15 @@ export default function TestimonialsForm() {
                         onChange={handleChange}
                         placeholder="[INPUT_EMAIL]"
                         required
-                        className="w-full bg-neutral-900/50 border border-neutral-800 px-4 py-3 text-sm font-mono text-white focus:border-purple-500 outline-none transition-colors placeholder:text-gray-500 rounded-none"
+                        className="w-full bg-black border border-neutral-800 px-4 py-3 text-sm font-mono text-white focus:border-purple-500 outline-none transition-colors placeholder:text-gray-500 rounded-none"
                       />
                     </div>
                   </div>
 
                   {/* DESIGNATION_ID */}
                   <div className="space-y-3 mb-8">
-                    <label className="flex items-center gap-2 text-[10px] font-mono text-gray-400 uppercase tracking-widest">
-                      <Briefcase className="w-3 h-3" /> DESIGNATION_ID
+                    <label className="flex items-center gap-2 text-[10px] font-mono text-gray-300 uppercase tracking-widest">
+                      <Briefcase className="w-3 h-3 text-purple-400" /> DESIGNATION_ID
                     </label>
                     <input
                       type="text"
@@ -226,14 +226,14 @@ export default function TestimonialsForm() {
                       value={formData.role}
                       onChange={handleChange}
                       placeholder="[TITLE @ ORGANIZATION]"
-                      className="w-full bg-neutral-900/50 border border-neutral-800 px-4 py-3 text-sm font-mono text-white focus:border-purple-500 outline-none transition-colors placeholder:text-gray-500 rounded-none"
+                      className="w-full bg-black border border-neutral-800 px-4 py-3 text-sm font-mono text-white focus:border-purple-500 outline-none transition-colors placeholder:text-gray-500 rounded-none"
                     />
                   </div>
 
                   {/* LOG_DATA_ENTRY */}
                   <div className="space-y-3 mb-10">
-                    <label className="flex items-center gap-2 text-[10px] font-mono text-gray-400 uppercase tracking-widest">
-                      <FileText className="w-3 h-3" /> LOG_DATA_ENTRY
+                    <label className="flex items-center gap-2 text-[10px] font-mono text-gray-300 uppercase tracking-widest">
+                      <FileText className="w-3 h-3 text-purple-400" /> LOG_DATA_ENTRY
                     </label>
                     <textarea
                       name="testimonial"
@@ -242,7 +242,7 @@ export default function TestimonialsForm() {
                       rows={5}
                       placeholder="[ENTER_EXPERIENCE_RECORDS...]"
                       required
-                      className="w-full bg-neutral-900/50 border border-neutral-800 px-4 py-4 text-sm font-mono text-white focus:border-purple-500 outline-none transition-colors placeholder:text-gray-500 rounded-none resize-none"
+                      className="w-full bg-black border border-neutral-800 px-4 py-4 text-sm font-mono text-white focus:border-purple-500 outline-none transition-colors placeholder:text-gray-500 rounded-none resize-none"
                     />
                   </div>
 
@@ -260,7 +260,7 @@ export default function TestimonialsForm() {
                   key="success"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-neutral-900/20 border border-neutral-800 p-12 text-center relative overflow-hidden min-h-[500px] flex flex-col items-center justify-center"
+                  className="bg-neutral-900 border border-neutral-800 p-12 text-center relative overflow-hidden min-h-[500px] flex flex-col items-center justify-center shadow-2xl"
                 >
                   <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-purple-500/50" />
                   <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-purple-500/50" />

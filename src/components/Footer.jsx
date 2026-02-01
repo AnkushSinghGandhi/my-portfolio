@@ -20,7 +20,7 @@ export default function Footer() {
                 WARRIOR_SYSTEMS <span className="text-neutral-700">v4.0</span>
               </h3>
             </div>
-            <p className="text-xs font-mono leading-relaxed max-w-xs uppercase tracking-tight">
+            <p className="text-xs font-mono leading-relaxed max-w-xs uppercase tracking-tight text-neutral-400">
               // SCALING IDEAS INTO DISTRIBUTED SYSTEMS.
               CORE_ARCHITECT: ANKUSH SINGH GANDHI.
             </p>
@@ -28,15 +28,15 @@ export default function Footer() {
             <div className="pt-4 flex items-center gap-4">
               <div className="flex items-center gap-2 px-3 py-1 bg-neutral-900 border border-neutral-800">
                 <Activity className="w-3 h-3 text-green-500 animate-pulse" />
-                <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">System_Status: Online</span>
+                <span className="text-[10px] font-mono text-neutral-300 uppercase tracking-widest">System_Status: Online</span>
               </div>
             </div>
           </div>
 
           {/* Section 02: Access Modules */}
           <div className="md:col-span-2">
-            <h4 className="text-[10px] font-mono text-purple-400 uppercase tracking-[0.3em] mb-8">Access_Modules</h4>
-            <ul className="space-y-3 text-xs font-mono uppercase tracking-widest">
+            <h4 className="text-[10px] font-mono text-blue-400 uppercase tracking-[0.3em] mb-8">Access_Modules</h4>
+            <ul className="space-y-3 text-xs font-mono uppercase tracking-widest text-neutral-400">
               <li><Link to="/" className="hover:text-white transition-colors">{" >> "} Home</Link></li>
               <li><Link to="/experience" className="hover:text-white transition-colors">{" >> "} Experience</Link></li>
               <li><Link to="/projects" className="hover:text-white transition-colors">{" >> "} Projects</Link></li>
@@ -46,8 +46,8 @@ export default function Footer() {
 
           {/* Section 03: System Entry Points */}
           <div className="md:col-span-2">
-            <h4 className="text-[10px] font-mono text-purple-400 uppercase tracking-[0.3em] mb-8">Entry_Points</h4>
-            <ul className="space-y-3 text-xs font-mono uppercase tracking-widest">
+            <h4 className="text-[10px] font-mono text-blue-400 uppercase tracking-[0.3em] mb-8">Entry_Points</h4>
+            <ul className="space-y-3 text-xs font-mono uppercase tracking-widest text-neutral-400">
               <li><Link to="/about" className="hover:text-white transition-colors">{" >> "} ABOUT_ME</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">{" >> "} Contact</Link></li>
               <li><Link to="/testimonials" className="hover:text-white transition-colors">{" >> "} CLIENT_RECORDS</Link></li>
@@ -57,7 +57,7 @@ export default function Footer() {
 
           {/* Section 04: External Relays */}
           <div className="md:col-span-4">
-            <h4 className="text-[10px] font-mono text-purple-400 uppercase tracking-[0.3em] mb-8">External_Relays</h4>
+            <h4 className="text-[10px] font-mono text-blue-400 uppercase tracking-[0.3em] mb-8">External_Relays</h4>
             <div className="grid grid-cols-3 gap-4 mb-8">
               <SocialLink icon={Linkedin} href="https://www.linkedin.com/in/ankushsinghgandhi/" />
               <SocialLink icon={Github} href="https://github.com/AnkushSinghGandhi" />
@@ -67,8 +67,8 @@ export default function Footer() {
               <SocialLink icon={Instagram} href="https://instagram.com/warriorwhocodes" />
               <SocialLink icon={Mail} href="mailto:ankushsinghgandhi@gmail.com" />
             </div>
-            <div className="p-4 bg-neutral-900/50 border border-neutral-800">
-              <p className="text-[10px] font-mono text-gray-500 uppercase leading-tight">
+            <div className="p-4 bg-neutral-900 border border-neutral-800">
+              <p className="text-[10px] font-mono text-neutral-400 uppercase leading-tight">
                  // Direct_Sync: ankushsinghgandhi@gmail.com <br />
                  // Station_Voice: +91 9529639652
               </p>
@@ -78,10 +78,10 @@ export default function Footer() {
 
         {/* Legal & Versioning */}
         <div className="pt-12 border-t border-neutral-900 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-600">
+          <p className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">
             © {new Date().getFullYear()} WARRIOR_WHO_CODES. ALL RIGHTS RESERVED.
           </p>
-          <div className="flex items-center gap-4 text-[9px] font-mono text-neutral-700">
+          <div className="flex items-center gap-4 text-[9px] font-mono text-neutral-500">
             <span>ENCRYPTION: SH256</span>
             <span className="w-1 h-1 bg-neutral-800 rounded-full" />
             <span>LOC: 28.6139° N, 77.2090° E</span>
@@ -100,9 +100,9 @@ function SocialLink({ icon: Icon, href, isIcon = false }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center p-3 bg-neutral-900 border border-neutral-800 hover:border-purple-500 group transition-all"
+      className="flex items-center justify-center p-3 bg-neutral-900 border border-neutral-800 hover:border-blue-500 group transition-all hover:bg-neutral-800"
     >
-      <Icon className={`w-4 h-4 text-gray-400 group-hover:text-white transition-colors`} />
+      <Icon className={`w-4 h-4 text-white group-hover:text-blue-400 transition-colors`} />
     </a>
   )
 }
