@@ -322,10 +322,14 @@ Namespaces are one honking great idea -- let's do more of those!`;
                             <div className="flex items-center gap-3">
                                 <button
                                     onClick={() => setShowHelp(!showHelp)}
-                                    className={`transition-colors ${showHelp ? "text-purple-400" : "text-neutral-600 hover:text-purple-400"}`}
+                                    className={`flex items-center gap-2 px-3 py-1 mr-2 rounded text-[10px] font-bold tracking-wider transition-all border ${showHelp
+                                        ? "bg-purple-500 text-white border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                                        : "bg-neutral-800 text-gray-300 border-neutral-700 hover:border-purple-500 hover:text-white"
+                                        }`}
                                     title="System Tutorial"
                                 >
                                     <Info className="w-3 h-3" />
+                                    <span>COMMANDS</span>
                                 </button>
                                 <button
                                     onClick={() => setIsMinimized(!isMinimized)}
