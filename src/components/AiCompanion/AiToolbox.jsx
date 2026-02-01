@@ -11,6 +11,7 @@ const AiToolbox = ({ context }) => {
     const [activeMode, setActiveMode] = useState(null); // 'quiz', 'roadmap', 'pathfinder', 'tutor'
     const [apiKey, setApiKey] = useState(localStorage.getItem("gemini_key") || "");
     const [isKeyModalOpen, setIsKeyModalOpen] = useState(false);
+    const [pendingMode, setPendingMode] = useState(null);
 
     useEffect(() => {
         if (apiKey) {
@@ -31,11 +32,17 @@ const AiToolbox = ({ context }) => {
             localStorage.setItem("gemini_key", apiKey);
             initializeGemini(apiKey);
             setIsKeyModalOpen(false);
+            if (pendingMode) {
+                setActiveMode(pendingMode);
+                setPendingMode(null);
+                setIsOpen(false);
+            }
         }
     };
 
     const handleModeSelect = (mode) => {
         if (!apiKey) {
+            setPendingMode(mode);
             setIsKeyModalOpen(true);
             return;
         }
@@ -56,7 +63,7 @@ const AiToolbox = ({ context }) => {
                             className="flex items-center gap-3 bg-neutral-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_25px_rgba(236,72,153,0.5)] hover:scale-105 transition-all border border-pink-500/50 hover:border-pink-400 font-mono tracking-wider"
                         >
                             <MessageSquareText className="w-5 h-5 text-pink-400" />
-                            <span className="text-sm font-bold uppercase">AI Tutor</span>
+                            <span className="text-sm font-bold uppercase">AI Expert</span>
                         </button>
                         <button
                             onClick={() => handleModeSelect("quiz")}
@@ -118,7 +125,13 @@ const AiToolbox = ({ context }) => {
                                     initializeGemini("demo");
                                     enableDemoMode();
                                     setIsKeyModalOpen(false);
-                                    if (context && context.length > 0) setIsOpen(true);
+                                    if (pendingMode) {
+                                        setActiveMode(pendingMode);
+                                        setPendingMode(null);
+                                        setIsOpen(false);
+                                    } else if (context && context.length > 0) {
+                                        setIsOpen(true);
+                                    }
                                 }}
                                 className="px-4 py-2 text-cyan-400 hover:bg-cyan-900/20 border border-cyan-500/30 mr-auto font-mono text-sm"
                             >
@@ -161,7 +174,7 @@ const AiToolbox = ({ context }) => {
                                 <h2 className="text-2xl font-bold capitalize dark:text-white">
                                     {activeMode === 'quiz' ? 'Knowledge Check' :
                                         activeMode === 'roadmap' ? 'Action Plan' :
-                                            activeMode === 'pathfinder' ? 'Pathfinder' : 'AI Tutor'}
+                                            activeMode === 'pathfinder' ? 'Pathfinder' : 'AI Expert'}
                                 </h2>
                             </div>
                             <div className="flex items-center gap-2">

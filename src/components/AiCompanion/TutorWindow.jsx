@@ -4,7 +4,7 @@ import { Send, User, Bot, Loader2, Sparkles, Trash2 } from "lucide-react";
 
 const TutorWindow = ({ context }) => {
     const [messages, setMessages] = useState([
-        { role: 'assistant', content: "Hi! I'm your AI Tutor. I can explain the concepts in this roadmap, help you debug code, or mock interview you. What's on your mind?" }
+        { role: 'assistant', content: "Hi! I'm your AI Expert. I can explain the concepts in this roadmap, help you debug code, or mock interview you. What's on your mind?" }
     ]);
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);

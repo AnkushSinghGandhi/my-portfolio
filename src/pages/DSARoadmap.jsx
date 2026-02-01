@@ -77,7 +77,7 @@ export default function DSARoadmap() {
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600/20 to-cyan-500/20 border border-blue-500/50 hover:border-cyan-400 text-cyan-300 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-500 hover:text-white transition-all hover:scale-105 shadow-[0_0_20px_rgba(34,211,238,0.2)] group"
                             >
                                 <Sparkles className="w-5 h-5 text-blue-400 group-hover:text-white group-hover:animate-pulse" />
-                                <span className="font-bold tracking-wide">ACTIVATE AI TUTOR</span>
+                                <span className="font-bold tracking-wide">ACTIVATE AI EXPERT</span>
                             </button>
                             <p className="text-[10px] text-gray-600 mt-2 font-mono">
                                 // Click to generate quizzes, study plans & project ideas based on this roadmap

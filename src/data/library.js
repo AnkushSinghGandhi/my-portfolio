@@ -9,8 +9,10 @@ export const cheatsheets = [
         description: "Priority-based roadmap focusing on high-impact DSA topics. Tier 1-4 coverage.",
         link: "/library/dsa-roadmap",
         tags: ["DSA", "Interview Prep", "Roadmap"],
-        icon: "🚀",
+        icon: "Rocket",
         featured: true,
+        color: "purple",
+        gradient: "from-purple-600 to-indigo-600"
     },
     {
         id: "mysql-one",
@@ -19,8 +21,10 @@ export const cheatsheets = [
         description: "Complete mastery of MySQL queries, indexing, and normalization for backend engineering.",
         link: "/library/mysql-one",
         tags: ["MySQL", "Database"],
-        icon: "🐬",
+        icon: "Database",
         featured: true,
+        color: "cyan",
+        gradient: "from-cyan-600 to-blue-600"
     },
     {
         id: "redis-one",
@@ -29,8 +33,10 @@ export const cheatsheets = [
         description: "In-depth guide to Redis caching, pub/sub, and data structures for high-performance systems.",
         link: "/library/redis-one",
         tags: ["Redis", "Caching"],
-        icon: "⚡",
+        icon: "Zap",
         featured: true,
+        color: "orange",
+        gradient: "from-red-600 to-orange-600"
     },
     {
         id: "django-orm-one",
@@ -39,8 +45,10 @@ export const cheatsheets = [
         description: "Advanced Django ORM techniques, optimization, and query tuning for scalable apps.",
         link: "/library/django-orm-one",
         tags: ["Django", "ORM"],
-        icon: "🎸",
+        icon: "Container",
         featured: true,
+        color: "emerald",
+        gradient: "from-emerald-600 to-green-600"
     },
     {
         id: "system-design",
@@ -49,8 +57,10 @@ export const cheatsheets = [
         description: "Learn to design scalable systems. Distributed systems, databases, caching.",
         link: "/library/system-design",
         tags: ["System Design", "Architecture"],
-        icon: "🏗️",
+        icon: "LayoutTemplate",
         featured: false,
+        color: "slate",
+        gradient: "from-slate-500 to-zinc-500"
     },
 ];
 

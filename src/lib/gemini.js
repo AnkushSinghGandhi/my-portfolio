@@ -255,7 +255,7 @@ export const generateTutorResponse = async (history, message, context) => {
     if (!model) throw new Error("Gemini API Key not set");
 
     if (useDemoMode) {
-        return "This is a demo response from the AI Tutor. I can explain concepts, debug code, or help you practice! (Real AI is disabled in demo mode)";
+        return "This is a demo response from the AI Expert. I can explain concepts, debug code, or help you practice! (Real AI is disabled in demo mode)";
     }
 
     // Construct the chat history for the model
@@ -267,7 +267,7 @@ export const generateTutorResponse = async (history, message, context) => {
 
     // Add context system instruction if it's the start of the chat
     const systemInstruction = `
-    You are an expert personalized AI Tutor for a developer portfolio.
+    You are an expert personalized AI Expert for a developer portfolio.
     Your goal is to help the user understand the technical concepts presented in this portfolio.
     
     Context from current page:
