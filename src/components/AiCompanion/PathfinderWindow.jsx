@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { generatePathfinder, enableDemoMode } from "../../lib/gemini";
+import { generatePathfinder } from "../../lib/gemini";
 import { Loader2, ArrowRightCircle, Code, Lightbulb, RefreshCw, Settings } from "lucide-react";
 
-const PathfinderWindow = ({ context, onSetKey }) => {
+const PathfinderWindow = ({ context, onSetKey, userProfile }) => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
@@ -15,7 +15,7 @@ const PathfinderWindow = ({ context, onSetKey }) => {
         setLoading(true);
         setError(null);
         try {
-            const result = await generatePathfinder(context);
+            const result = await generatePathfinder(context, userProfile);
             setData(result);
         } catch (err) {
             console.error(err);
@@ -50,15 +50,6 @@ const PathfinderWindow = ({ context, onSetKey }) => {
                         className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-yellow-500/80 border border-yellow-500/20 hover:border-yellow-500/50 hover:text-yellow-400 transition-all font-mono text-xs uppercase tracking-tighter"
                     >
                         <Settings className="w-4 h-4" /> [SET_CUSTOM_KEY]
-                    </button>
-                    <button
-                        onClick={() => {
-                            enableDemoMode();
-                            loadPathInfo();
-                        }}
-                        className="flex items-center gap-2 px-4 py-2 bg-purple-900/20 text-purple-400 border border-purple-500/30 hover:bg-purple-600 hover:text-white transition-all font-mono text-xs uppercase tracking-tighter"
-                    >
-                        <Lightbulb className="w-4 h-4" /> [LOAD_DEMO_DATA]
                     </button>
                 </div>
             </div>

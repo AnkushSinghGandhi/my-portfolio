@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { generateTutorStream } from "../../lib/gemini";
 import { Send, User, Bot, Loader2, Sparkles, Trash2, Settings } from "lucide-react";
 
-const TutorWindow = ({ context, onSetKey }) => {
+const TutorWindow = ({ context, onSetKey, userProfile }) => {
     const [messages, setMessages] = useState([
         { role: 'assistant', content: "Hi! I'm your AI Expert. I can explain the concepts in this roadmap, help you debug code, or mock interview you. What's on your mind?" }
     ]);
@@ -39,7 +39,7 @@ const TutorWindow = ({ context, onSetKey }) => {
         try {
             const history = messages.filter(m => m.role !== 'system');
 
-            await generateTutorStream(history, currentInput, context, (chunk) => {
+            await generateTutorStream(history, currentInput, context, userProfile, (chunk) => {
                 fullResponse += chunk;
                 setMessages(prev => {
                     const newMessages = [...prev];

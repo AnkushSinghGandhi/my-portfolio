@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { generateRoadmap, enableDemoMode } from "../../lib/gemini";
+import { generateRoadmap } from "../../lib/gemini";
 import { Loader2, CheckSquare, Square, Download, RefreshCw, Settings } from "lucide-react";
 
-const RoadmapWindow = ({ context, onSetKey }) => {
+const RoadmapWindow = ({ context, onSetKey, userProfile }) => {
     const [loading, setLoading] = useState(true);
     const [roadmap, setRoadmap] = useState([]);
     const [error, setError] = useState(null);
@@ -16,7 +16,7 @@ const RoadmapWindow = ({ context, onSetKey }) => {
         setLoading(true);
         setError(null);
         try {
-            const data = await generateRoadmap(context);
+            const data = await generateRoadmap(context, userProfile);
             setRoadmap(data.steps || data);
         } catch (err) {
             console.error(err);
@@ -58,15 +58,6 @@ const RoadmapWindow = ({ context, onSetKey }) => {
                         className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-yellow-500/80 border border-yellow-500/20 hover:border-yellow-500/50 hover:text-yellow-400 transition-all font-mono text-xs uppercase tracking-tighter"
                     >
                         <Settings className="w-4 h-4" /> [SET_CUSTOM_KEY]
-                    </button>
-                    <button
-                        onClick={() => {
-                            enableDemoMode();
-                            loadRoadmap();
-                        }}
-                        className="flex items-center gap-2 px-4 py-2 bg-blue-900/20 text-blue-400 border border-blue-500/30 hover:bg-blue-600 hover:text-white transition-all font-mono text-xs uppercase tracking-tighter"
-                    >
-                        <Download className="w-4 h-4" /> [EMULATE_PLAN]
                     </button>
                 </div>
             </div>

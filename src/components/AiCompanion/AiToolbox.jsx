@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Sparkles, Brain, ListChecks, Map, X, Key, ChevronRight, Settings, MessageSquareText } from "lucide-react";
-import { initializeGemini, enableDemoMode } from "../../lib/gemini";
+import { initializeGemini } from "../../lib/gemini";
 import QuizWindow from "./QuizWindow";
 import RoadmapWindow from "./RoadmapWindow";
 import PathfinderWindow from "./PathfinderWindow";
@@ -13,6 +13,10 @@ const AiToolbox = ({ context }) => {
     const [apiKey, setApiKey] = useState(localStorage.getItem("gemini_key") || "");
     const [isKeyModalOpen, setIsKeyModalOpen] = useState(false);
     const [pendingMode, setPendingMode] = useState(null);
+    const [userProfile, setUserProfile] = useState(() => {
+        const saved = localStorage.getItem("ai_user_profile");
+        return saved ? JSON.parse(saved) : { occupation: "", goal: "", skills: "" };
+    });
 
     useEffect(() => {
         initializeGemini(apiKey || envKey);
@@ -40,15 +44,16 @@ const AiToolbox = ({ context }) => {
     }, [context]);
 
     const handleSaveKey = () => {
+        localStorage.setItem("ai_user_profile", JSON.stringify(userProfile));
         if (apiKey) {
             localStorage.setItem("gemini_key", apiKey);
             initializeGemini(apiKey);
-            setIsKeyModalOpen(false);
-            setIsOpen(false);
-            if (pendingMode) {
-                setActiveMode(pendingMode);
-                setPendingMode(null);
-            }
+        }
+        setIsKeyModalOpen(false);
+        setIsOpen(false);
+        if (pendingMode) {
+            setActiveMode(pendingMode);
+            setPendingMode(null);
         }
     };
 
@@ -123,59 +128,90 @@ const AiToolbox = ({ context }) => {
             {/* API Key Modal */}
             {isKeyModalOpen && (
                 <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-                    <div className="bg-neutral-900 p-6 w-full max-w-md shadow-2xl border border-neutral-700 animate-in zoom-in-95">
+                    <div className="bg-neutral-900 p-6 w-full max-w-lg shadow-2xl border border-neutral-700 animate-in zoom-in-95 max-h-[90vh] overflow-y-auto">
                         <div className="flex items-center gap-3 mb-4">
-                            <Key className="w-6 h-6 text-yellow-500" />
-                            <h3 className="text-xl font-bold dark:text-white">Enter Gemini API Key</h3>
+                            <Settings className="w-6 h-6 text-purple-500" />
+                            <h3 className="text-xl font-bold dark:text-white uppercase tracking-tighter">AI Personalization</h3>
                         </div>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">
-                            To use the AI Learning features, please provide a free Google Gemini API key.
-                            It is stored locally in your browser.
-                        </p>
-                        <input
-                            type="password"
-                            value={apiKey}
-                            onChange={(e) => setApiKey(e.target.value)}
-                            placeholder="Paste AI Studio Key..."
-                            className="w-full p-3 bg-neutral-800 border border-neutral-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white mb-4 font-mono"
-                        />
-                        <div className="flex justify-end gap-2 items-center">
-                            <button
-                                onClick={() => {
-                                    setApiKey("demo");
-                                    localStorage.setItem("gemini_key", "demo");
-                                    initializeGemini("demo");
-                                    enableDemoMode();
-                                    setIsKeyModalOpen(false);
-                                    if (pendingMode) {
-                                        setActiveMode(pendingMode);
-                                        setPendingMode(null);
-                                        setIsOpen(false);
-                                    } else if (context && context.length > 0) {
-                                        setIsOpen(true);
-                                    }
-                                }}
-                                className="px-4 py-2 text-cyan-400 hover:bg-cyan-900/20 border border-cyan-500/30 mr-auto font-mono text-sm"
-                            >
-                                Try Demo
-                            </button>
+
+                        <div className="space-y-4 mb-6">
+                            {/* API Key Section */}
+                            <div>
+                                <label className="block text-[10px] font-mono text-zinc-500 uppercase mb-1.5 font-bold">Gemini API Key</label>
+                                <input
+                                    type="password"
+                                    value={apiKey}
+                                    onChange={(e) => setApiKey(e.target.value)}
+                                    placeholder="Paste AI Studio Key..."
+                                    className="w-full p-2.5 bg-neutral-800 border border-neutral-700 focus:border-purple-500 text-white font-mono text-sm"
+                                />
+                                <p className="text-[9px] text-zinc-600 mt-1 uppercase font-mono tracking-tighter">Stored locally in your browser proxy</p>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-[10px] font-mono text-zinc-500 uppercase mb-1.5 font-bold">Occupation</label>
+                                    <select
+                                        value={userProfile.occupation}
+                                        onChange={(e) => setUserProfile({ ...userProfile, occupation: e.target.value })}
+                                        className="w-full p-2.5 bg-neutral-800 border border-neutral-700 focus:border-purple-500 text-white font-mono text-sm"
+                                    >
+                                        <option value="">Select...</option>
+                                        <option value="student">Student</option>
+                                        <option value="frontend">Frontend Engineer</option>
+                                        <option value="backend">Backend Engineer</option>
+                                        <option value="aspiring_backend">Aspiring Backend</option>
+                                        <option value="ml_engineer">ML Engineer</option>
+                                        <option value="data_scientist">Data Scientist</option>
+                                        <option value="other">Other Professional</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-[10px] font-mono text-zinc-500 uppercase mb-1.5 font-bold">Primary Goal</label>
+                                    <select
+                                        value={userProfile.goal}
+                                        onChange={(e) => setUserProfile({ ...userProfile, goal: e.target.value })}
+                                        className="w-full p-2.5 bg-neutral-800 border border-neutral-700 focus:border-purple-500 text-white font-mono text-sm"
+                                    >
+                                        <option value="">Select...</option>
+                                        <option value="system_design">System Design</option>
+                                        <option value="dsa">DSA Mastery</option>
+                                        <option value="fullstack">Full Stack Dev</option>
+                                        <option value="devops">DevOps/Cloud</option>
+                                        <option value="ai">AI/ML Core</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label className="block text-[10px] font-mono text-zinc-500 uppercase mb-1.5 font-bold">Existing Skills</label>
+                                <input
+                                    type="text"
+                                    value={userProfile.skills}
+                                    onChange={(e) => setUserProfile({ ...userProfile, skills: e.target.value })}
+                                    placeholder="Python, React, AWS, etc."
+                                    className="w-full p-2.5 bg-neutral-800 border border-neutral-700 focus:border-purple-500 text-white font-mono text-sm"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="flex justify-end gap-2 items-center border-t border-white/5 pt-4">
                             <button
                                 onClick={() => setIsKeyModalOpen(false)}
-                                className="px-4 py-2 text-neutral-400 hover:bg-neutral-800 border border-neutral-700"
+                                className="px-4 py-2 text-neutral-400 hover:bg-neutral-800 border border-neutral-700 text-[10px] font-bold uppercase tracking-widest"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={handleSaveKey}
-                                disabled={!apiKey}
-                                className="px-4 py-2 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-50 font-mono"
+                                className="px-6 py-2 bg-purple-600 text-white hover:bg-purple-700 font-mono text-[10px] font-bold uppercase tracking-widest"
                             >
-                                Start Learning
+                                Save Configuration
                             </button>
                         </div>
-                        <p className="text-xs text-center mt-4 text-zinc-400">
+                        <p className="text-[10px] text-center mt-4 text-zinc-500 uppercase tracking-tighter">
                             <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="underline hover:text-purple-500">
-                                Get a free key here
+                                Get a free Gemini key here
                             </a>
                         </p>
                     </div>
@@ -217,10 +253,10 @@ const AiToolbox = ({ context }) => {
 
                         {/* Content */}
                         <div className="p-6 flex-1 bg-neutral-900">
-                            {activeMode === 'quiz' && <QuizWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} />}
-                            {activeMode === 'roadmap' && <RoadmapWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} />}
-                            {activeMode === 'pathfinder' && <PathfinderWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} />}
-                            {activeMode === 'tutor' && <TutorWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} />}
+                            {activeMode === 'quiz' && <QuizWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} userProfile={userProfile} />}
+                            {activeMode === 'roadmap' && <RoadmapWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} userProfile={userProfile} />}
+                            {activeMode === 'pathfinder' && <PathfinderWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} userProfile={userProfile} />}
+                            {activeMode === 'tutor' && <TutorWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} userProfile={userProfile} />}
                         </div>
                     </div>
                 </div>
