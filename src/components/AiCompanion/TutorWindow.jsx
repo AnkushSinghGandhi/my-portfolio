@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { generateTutorResponse } from "../../lib/gemini";
-import { Send, User, Bot, Loader2, Sparkles, Trash2 } from "lucide-react";
+import { generateTutorStream } from "../../lib/gemini";
+import { Send, User, Bot, Loader2, Sparkles, Trash2, Settings } from "lucide-react";
 
-const TutorWindow = ({ context }) => {
+const TutorWindow = ({ context, onSetKey }) => {
     const [messages, setMessages] = useState([
         { role: 'assistant', content: "Hi! I'm your AI Expert. I can explain the concepts in this roadmap, help you debug code, or mock interview you. What's on your mind?" }
     ]);
@@ -27,27 +27,41 @@ const TutorWindow = ({ context }) => {
         if (!input.trim() || loading) return;
 
         const userMsg = { role: 'user', content: input };
+        const currentInput = input;
         setMessages(prev => [...prev, userMsg]);
         setInput("");
         setLoading(true);
 
+        // Add placeholder for assistant message
+        setMessages(prev => [...prev, { role: 'assistant', content: "" }]);
+
+        let fullResponse = "";
         try {
-            // Filter out the initial welcome message from history if needed, 
-            // but usually keeping it is fine if we map it correctly.
-            // Our generateTutorResponse expects an array of {role, content}
-            // where role is 'user' or 'assistant' (mapped to 'model').
+            const history = messages.filter(m => m.role !== 'system');
 
-            // We pass the history EXCLUDING the latest message we just added (because specific implementation complexity),
-            // OR we can pass everything.
-            // Let's pass the messages + the new one.
-            const history = [...messages, userMsg].filter(m => m.role !== 'system');
-
-            const responseText = await generateTutorResponse(history, input, context);
-
-            setMessages(prev => [...prev, { role: 'assistant', content: responseText }]);
+            await generateTutorStream(history, currentInput, context, (chunk) => {
+                fullResponse += chunk;
+                setMessages(prev => {
+                    const newMessages = [...prev];
+                    newMessages[newMessages.length - 1] = {
+                        role: 'assistant',
+                        content: fullResponse
+                    };
+                    return newMessages;
+                });
+            });
         } catch (error) {
             console.error("Chat Error:", error);
-            setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I encountered an error. Please check your API key or try again." }]);
+            setMessages(prev => {
+                const newMessages = [...prev];
+                newMessages[newMessages.length - 1] = {
+                    role: 'assistant',
+                    content: `⚠️ CONNECTION_ERROR: My neural link is unstable. This often means the API key is invalid or has reached its quota. 
+
+You can try to [RECONFIGURE_KEY] in the toolbox settings if you have your own.`
+                };
+                return newMessages;
+            });
         } finally {
             setLoading(false);
         }
@@ -122,25 +136,19 @@ const TutorWindow = ({ context }) => {
                                 : 'bg-black border-purple-500/20 text-zinc-300'
                             }
                         `}>
-                            {renderContent(msg.content)}
+                            {msg.content === "" ? (
+                                <div className="flex gap-1 py-1">
+                                    <span className="w-1.5 h-1.5 bg-purple-500/50 animate-pulse"></span>
+                                    <span className="w-1.5 h-1.5 bg-purple-500/50 animate-pulse [animation-delay:0.2s]"></span>
+                                    <span className="w-1.5 h-1.5 bg-purple-500/50 animate-pulse [animation-delay:0.4s]"></span>
+                                </div>
+                            ) : (
+                                renderContent(msg.content)
+                            )}
                         </div>
                     </div>
                 ))}
 
-                {loading && (
-                    <div className="flex gap-3">
-                        <div className="w-6 h-6 bg-purple-900/40 border border-purple-500/50 flex items-center justify-center shrink-0">
-                            <Sparkles className="w-3 h-3 text-purple-400 animate-pulse" />
-                        </div>
-                        <div className="bg-black border border-white/5 px-4 py-3 flex items-center gap-2">
-                            <div className="flex gap-1">
-                                <span className="w-1.5 h-1.5 bg-zinc-600 animate-pulse"></span>
-                                <span className="w-1.5 h-1.5 bg-zinc-600 animate-pulse [animation-delay:0.2s]"></span>
-                                <span className="w-1.5 h-1.5 bg-zinc-600 animate-pulse [animation-delay:0.4s]"></span>
-                            </div>
-                        </div>
-                    </div>
-                )}
                 <div ref={messagesEndRef} />
             </div>
 
