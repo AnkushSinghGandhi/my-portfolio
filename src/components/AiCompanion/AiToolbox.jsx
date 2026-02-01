@@ -62,28 +62,28 @@ const AiToolbox = ({ context }) => {
                     <div className="flex flex-col gap-3 mb-3 animate-in slide-in-from-bottom-5 fade-in duration-300">
                         <button
                             onClick={() => handleModeSelect("tutor")}
-                            className="flex items-center gap-3 bg-neutral-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_25px_rgba(236,72,153,0.5)] hover:scale-105 transition-all border border-pink-500/50 hover:border-pink-400 font-mono tracking-wider"
+                            className="flex items-center gap-3 bg-neutral-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(236,72,153,0.1)] hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:scale-105 transition-all border border-pink-500/30 hover:border-pink-500 font-mono tracking-wider rounded-none"
                         >
                             <MessageSquareText className="w-5 h-5 text-pink-400" />
                             <span className="text-sm font-bold uppercase">AI Expert</span>
                         </button>
                         <button
                             onClick={() => handleModeSelect("quiz")}
-                            className="flex items-center gap-3 bg-neutral-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_25px_rgba(168,85,247,0.5)] hover:scale-105 transition-all border border-purple-500/50 hover:border-purple-400 font-mono tracking-wider"
+                            className="flex items-center gap-3 bg-neutral-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(168,85,247,0.1)] hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:scale-105 transition-all border border-purple-500/30 hover:border-purple-500 font-mono tracking-wider rounded-none"
                         >
                             <Brain className="w-5 h-5 text-purple-400" />
                             <span className="text-sm font-bold uppercase">Test Me</span>
                         </button>
                         <button
                             onClick={() => handleModeSelect("roadmap")}
-                            className="flex items-center gap-3 bg-neutral-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] hover:scale-105 transition-all border border-blue-500/50 hover:border-blue-400 font-mono tracking-wider"
+                            className="flex items-center gap-3 bg-neutral-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:scale-105 transition-all border border-blue-500/30 hover:border-blue-500 font-mono tracking-wider rounded-none"
                         >
                             <ListChecks className="w-5 h-5 text-blue-400" />
                             <span className="text-sm font-bold uppercase">Action Plan</span>
                         </button>
                         <button
                             onClick={() => handleModeSelect("pathfinder")}
-                            className="flex items-center gap-3 bg-neutral-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)] hover:scale-105 transition-all border border-green-500/50 hover:border-green-400 font-mono tracking-wider"
+                            className="flex items-center gap-3 bg-neutral-900 text-white px-6 py-3 shadow-[0_0_15px_rgba(34,197,94,0.1)] hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:scale-105 transition-all border border-green-500/30 hover:border-green-500 font-mono tracking-wider rounded-none"
                         >
                             <Map className="w-5 h-5 text-green-400" />
                             <span className="text-sm font-bold uppercase">Pathfinder</span>
@@ -93,7 +93,9 @@ const AiToolbox = ({ context }) => {
 
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className={`p-4 shadow-2xl transition-all duration-300 hover:scale-110 ${isOpen || activeMode ? "bg-neutral-800 text-white border border-neutral-600" : "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+                    className={`p-4 shadow-2xl transition-all duration-300 hover:scale-110 rounded-none border ${isOpen || activeMode
+                        ? "bg-neutral-900 text-white border-white/20 hover:border-white/40"
+                        : "bg-gradient-to-r from-purple-600 to-blue-600 text-white border-purple-400/50 shadow-[0_0_20px_rgba(168,85,247,0.4)]"
                         }`}
                 >
                     {isOpen || activeMode ? <X className="w-6 h-6" /> : <Sparkles className="w-6 h-6 animate-pulse" />}
@@ -164,19 +166,19 @@ const AiToolbox = ({ context }) => {
 
             {/* Active Mode Window */}
             {activeMode && (
-                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 sm:p-8">
-                    <div className="bg-neutral-900 w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl border border-neutral-700 flex flex-col animate-in zoom-in-95">
+                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-8">
+                    <div className="bg-black w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-[0_0_40px_rgba(0,0,0,1)] border border-white/10 flex flex-col animate-in zoom-in-95 rounded-none">
                         {/* Header */}
-                        <div className="flex items-center justify-between p-6 border-b border-neutral-800 sticky top-0 bg-neutral-900/95 backdrop-blur-md z-10">
+                        <div className="flex items-center justify-between p-6 border-b border-white/5 sticky top-0 bg-black/95 backdrop-blur-md z-10">
                             <div className="flex items-center gap-3">
-                                {activeMode === 'quiz' && <Brain className="w-6 h-6 text-purple-500" />}
-                                {activeMode === 'roadmap' && <ListChecks className="w-6 h-6 text-blue-500" />}
-                                {activeMode === 'pathfinder' && <Map className="w-6 h-6 text-green-500" />}
-                                {activeMode === 'tutor' && <MessageSquareText className="w-6 h-6 text-pink-500" />}
-                                <h2 className="text-2xl font-bold capitalize dark:text-white">
-                                    {activeMode === 'quiz' ? 'Knowledge Check' :
-                                        activeMode === 'roadmap' ? 'Action Plan' :
-                                            activeMode === 'pathfinder' ? 'Pathfinder' : 'AI Expert'}
+                                {activeMode === 'quiz' && <Brain className="w-5 h-5 text-purple-500" />}
+                                {activeMode === 'roadmap' && <ListChecks className="w-5 h-5 text-blue-500" />}
+                                {activeMode === 'pathfinder' && <Map className="w-5 h-5 text-green-500" />}
+                                {activeMode === 'tutor' && <MessageSquareText className="w-5 h-5 text-pink-500" />}
+                                <h2 className="text-base font-mono font-bold tracking-widest uppercase text-white">
+                                    {activeMode === 'quiz' ? 'Knowledge_Check' :
+                                        activeMode === 'roadmap' ? 'Action_Plan' :
+                                            activeMode === 'pathfinder' ? 'Path_Finder' : 'AI_Expert_Session'}
                                 </h2>
                             </div>
                             <div className="flex items-center gap-2">
