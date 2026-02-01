@@ -26,22 +26,22 @@ export default function Projects({ limit, isPage }) {
   return (
     <section
       id="projects"
-      className={`relative px-6 sm:px-8 py-20 sm:py-24 bg-black text-gray-100 overflow-hidden ${isPage ? "pt-24 sm:pt-40" : ""}`}
+      className={`relative px-6 sm:px-8 py-20 sm:py-24 ${limit ? "bg-black text-gray-100" : "bg-white text-neutral-900"} overflow-hidden ${isPage ? "pt-24 sm:pt-40" : ""}`}
     >
       {/* Subtle Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+      <div className={`absolute inset-0 bg-[linear-gradient(to_right,${limit ? "#111" : "#e5e5e5"}_1px,transparent_1px),linear-gradient(to_bottom,${limit ? "#111" : "#e5e5e5"}_1px,transparent_1px)] bg-[size:40px_40px] ${limit ? "opacity-20" : "opacity-40"} pointer-events-none`} />
 
       {/* Header & Controls */}
       <div className="relative z-10 flex flex-col md:flex-row md:justify-between md:items-end max-w-7xl mx-auto mb-16 gap-8">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="w-2 h-2 bg-purple-500 animate-pulse" />
+            <span className="w-2 h-2 bg-purple-600 animate-pulse" />
             <span className="text-[10px] font-mono text-purple-600 tracking-[0.2em] uppercase">system.project_archive</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 tracking-tight">
+          <h2 className={`text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 tracking-tight ${limit ? "text-white" : "text-black"}`}>
             PROJECT ARCHIVE
           </h2>
-          <p className="text-gray-500 font-mono text-sm sm:text-base max-w-xl">
+          <p className={`${limit ? "text-gray-500" : "text-neutral-500"} font-mono text-sm sm:text-base max-w-xl`}>
             // EXPLORE DEPLOYED SYSTEMS AND EXPERIMENTAL LABS
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function Projects({ limit, isPage }) {
         <div className="flex flex-wrap gap-4">
           {/* Segmented Control */}
           {/* Enhanced Segmented Control */}
-          <div className="flex bg-neutral-900 border border-neutral-800 p-1.5 rounded-none">
+          <div className="flex bg-neutral-900 border border-neutral-800 p-1.5 rounded-none shadow-lg">
             <button
               onClick={() => setShowLab(false)}
               className={`relative flex items-center gap-3 px-6 py-3 rounded-none text-sm font-medium transition-all duration-300 ${!showLab ? "bg-white text-black shadow-lg shadow-white/10" : "text-gray-500 hover:text-white hover:bg-white/5"
@@ -86,16 +86,7 @@ export default function Projects({ limit, isPage }) {
             </button>
           </div>
 
-          {/* Case Studies Button */}
-          <Button
-            onClick={() => {
-              /* Handle case studies click */
-            }}
-            className="flex items-center gap-2 bg-transparent border border-neutral-800 text-gray-400 hover:text-white hover:border-purple-500 hover:bg-purple-600/10 px-6 py-2 h-auto text-sm transition-all rounded-none"
-          >
-            <BookOpen className="w-4 h-4" />
-            CASE STUDIES
-          </Button>
+
         </div>
       </div>
 
@@ -111,7 +102,7 @@ export default function Projects({ limit, isPage }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="group relative flex flex-col h-full bg-black border border-neutral-900"
+                className={`group relative flex flex-col h-full ${limit ? "bg-black" : "bg-neutral-900"} border border-neutral-800 ${!limit ? "shadow-xl hover:shadow-2xl" : ""} transition-all`}
               >
                 {/* Vertical Side Borders */}
                 <div className="absolute top-0 left-0 w-[1px] h-full bg-gradient-to-b from-blue-600 via-purple-600 to-pink-600 opacity-20 group-hover:opacity-100 transition-opacity duration-500 z-20" />

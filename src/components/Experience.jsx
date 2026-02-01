@@ -41,9 +41,9 @@ export default function Experience() {
   ];
 
   return (
-    <section className="relative px-6 sm:px-12 lg:px-20 py-24 pt-32 sm:pt-44 bg-black text-white font-sans overflow-hidden min-h-screen">
+    <section className="relative px-6 sm:px-12 lg:px-20 py-24 pt-32 sm:pt-44 bg-white text-neutral-900 font-sans overflow-hidden min-h-screen">
       {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header - Terminal Style */}
@@ -55,13 +55,13 @@ export default function Experience() {
         >
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
-              <span className="w-2 h-2 bg-purple-500 animate-pulse" />
-              <span className="text-[10px] font-mono text-purple-400 tracking-[0.2em] uppercase">system.service_history</span>
+              <span className="w-2 h-2 bg-purple-600 animate-pulse" />
+              <span className="text-[10px] font-mono text-purple-600 tracking-[0.2em] uppercase">system.service_history</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4 text-center md:text-left">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4 text-center md:text-left text-black">
               EXPERIENCE ARCHIVE
             </h1>
-            <p className="text-gray-500 font-mono text-xs sm:text-sm leading-relaxed max-w-2xl text-center md:text-left">
+            <p className="text-neutral-500 font-mono text-xs sm:text-sm leading-relaxed max-w-2xl text-center md:text-left">
               // CHRONOLOGICAL LOG OF TECHNICAL DEPLOYMENTS, PROFESSIONAL SERVICE, AND SYSTEM ARCHITECTURE ROLES.
               UNIFIED RECORDS OF PREVIOUS CORE OPERATIONS.
             </p>
@@ -85,7 +85,7 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group relative bg-neutral-900/40 border border-neutral-800 hover:border-purple-500/30 transition-all duration-500 overflow-hidden"
+              className="group relative bg-neutral-900 border border-neutral-800 hover:border-purple-500/50 transition-all duration-500 overflow-hidden shadow-xl hover:shadow-2xl"
             >
               {/* Left Gradient Accent Bar */}
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 via-purple-600 to-pink-600 opacity-20 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_10px_rgba(168,85,247,0.3)]" />
