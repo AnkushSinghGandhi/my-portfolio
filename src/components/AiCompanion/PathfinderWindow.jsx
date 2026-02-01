@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { generatePathfinder, enableDemoMode } from "../../lib/gemini";
-import { Loader2, ArrowRightCircle, Code, Lightbulb, RefreshCw } from "lucide-react";
+import { Loader2, ArrowRightCircle, Code, Lightbulb, RefreshCw, Settings } from "lucide-react";
 
-const PathfinderWindow = ({ context }) => {
+const PathfinderWindow = ({ context, onSetKey }) => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
@@ -38,19 +38,25 @@ const PathfinderWindow = ({ context }) => {
         return (
             <div className="text-center py-8">
                 <p className="text-red-500 mb-6 font-mono text-sm max-w-md mx-auto">{error || "No data received"}</p>
-                <div className="flex items-center justify-center gap-4">
+                <div className="flex flex-wrap items-center justify-center gap-3">
                     <button
                         onClick={loadPathInfo}
-                        className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-zinc-400 border border-zinc-800 hover:border-zinc-700 hover:text-white transition-all font-mono text-sm"
+                        className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-zinc-400 border border-zinc-800 hover:border-zinc-700 hover:text-white transition-all font-mono text-xs uppercase tracking-tighter"
                     >
                         <RefreshCw className="w-4 h-4" /> [RETRY_REQUEST]
+                    </button>
+                    <button
+                        onClick={onSetKey}
+                        className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-yellow-500/80 border border-yellow-500/20 hover:border-yellow-500/50 hover:text-yellow-400 transition-all font-mono text-xs uppercase tracking-tighter"
+                    >
+                        <Settings className="w-4 h-4" /> [SET_CUSTOM_KEY]
                     </button>
                     <button
                         onClick={() => {
                             enableDemoMode();
                             loadPathInfo();
                         }}
-                        className="flex items-center gap-2 px-4 py-2 bg-purple-900/20 text-purple-400 border border-purple-500/30 hover:bg-purple-600 hover:text-white transition-all font-mono text-sm"
+                        className="flex items-center gap-2 px-4 py-2 bg-purple-900/20 text-purple-400 border border-purple-500/30 hover:bg-purple-600 hover:text-white transition-all font-mono text-xs uppercase tracking-tighter"
                     >
                         <Lightbulb className="w-4 h-4" /> [LOAD_DEMO_DATA]
                     </button>

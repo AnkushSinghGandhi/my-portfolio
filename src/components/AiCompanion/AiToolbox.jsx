@@ -10,41 +10,50 @@ const AiToolbox = ({ context }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeMode, setActiveMode] = useState(null); // 'quiz', 'roadmap', 'pathfinder', 'tutor'
     const envKey = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyAQ5aDEy-fGT8f5qlQfIvVJVMSfDr2Y6dM";
-    const [apiKey, setApiKey] = useState(envKey || localStorage.getItem("gemini_key") || "");
+    const [apiKey, setApiKey] = useState(localStorage.getItem("gemini_key") || "");
     const [isKeyModalOpen, setIsKeyModalOpen] = useState(false);
     const [pendingMode, setPendingMode] = useState(null);
 
     useEffect(() => {
-        if (apiKey) {
-            initializeGemini(apiKey);
-        }
+        initializeGemini(apiKey || envKey);
     }, [apiKey]);
 
-    // Auto-open when context changes (triggered by clicking "Analyze" on a card)
-    // DISABLED: User prefers it collapsed by default
-    /*
+    // Listen for custom open events
     useEffect(() => {
-        if (context && context.length > 0) {
+        const handleOpen = (e) => {
+            const { mode } = e.detail || {};
+            if (mode) {
+                handleModeSelect(mode);
+            } else {
+                setIsOpen(true);
+            }
+        };
+        window.addEventListener("openAiToolbox", handleOpen);
+        return () => window.removeEventListener("openAiToolbox", handleOpen);
+    }, []);
+
+    // Auto-open when context changes if it looks like a card click context
+    useEffect(() => {
+        if (context && context.includes("Title:") && context.includes("Description:")) {
             setIsOpen(true);
         }
     }, [context]);
-    */
 
     const handleSaveKey = () => {
         if (apiKey) {
             localStorage.setItem("gemini_key", apiKey);
             initializeGemini(apiKey);
             setIsKeyModalOpen(false);
+            setIsOpen(false);
             if (pendingMode) {
                 setActiveMode(pendingMode);
                 setPendingMode(null);
-                setIsOpen(false);
             }
         }
     };
 
     const handleModeSelect = (mode) => {
-        if (!apiKey) {
+        if (!apiKey && !envKey) {
             setPendingMode(mode);
             setIsKeyModalOpen(true);
             return;
@@ -89,6 +98,14 @@ const AiToolbox = ({ context }) => {
                             <Map className="w-5 h-5 text-green-400" />
                             <span className="text-sm font-bold uppercase">Pathfinder</span>
                         </button>
+                        <div className="h-[1px] w-full bg-white/5 my-1" />
+                        <button
+                            onClick={() => setIsKeyModalOpen(true)}
+                            className="flex items-center gap-3 bg-neutral-950 text-zinc-500 px-6 py-3 hover:text-white transition-all border border-white/5 hover:border-white/20 font-mono tracking-wider rounded-none group/settings"
+                        >
+                            <Settings className="w-5 h-5 group-hover/settings:rotate-90 transition-transform duration-500" />
+                            <span className="text-xs font-bold uppercase">Configure AI</span>
+                        </button>
                     </div>
                 )}
 
@@ -105,7 +122,7 @@ const AiToolbox = ({ context }) => {
 
             {/* API Key Modal */}
             {isKeyModalOpen && (
-                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+                <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
                     <div className="bg-neutral-900 p-6 w-full max-w-md shadow-2xl border border-neutral-700 animate-in zoom-in-95">
                         <div className="flex items-center gap-3 mb-4">
                             <Key className="w-6 h-6 text-yellow-500" />
@@ -200,10 +217,10 @@ const AiToolbox = ({ context }) => {
 
                         {/* Content */}
                         <div className="p-6 flex-1 bg-neutral-900">
-                            {activeMode === 'quiz' && <QuizWindow context={context} />}
-                            {activeMode === 'roadmap' && <RoadmapWindow context={context} />}
-                            {activeMode === 'pathfinder' && <PathfinderWindow context={context} />}
-                            {activeMode === 'tutor' && <TutorWindow context={context} />}
+                            {activeMode === 'quiz' && <QuizWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} />}
+                            {activeMode === 'roadmap' && <RoadmapWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} />}
+                            {activeMode === 'pathfinder' && <PathfinderWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} />}
+                            {activeMode === 'tutor' && <TutorWindow context={context} onSetKey={() => setIsKeyModalOpen(true)} />}
                         </div>
                     </div>
                 </div>
