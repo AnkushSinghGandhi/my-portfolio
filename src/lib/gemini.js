@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { getAIContext } from "../data/ai_context";
 
 // Initialize Gemini
 let genAI = null;
@@ -10,7 +11,7 @@ export const initializeGemini = (apiKey) => {
     model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 };
 
-const envKey = import.meta.env.VITE_GEMINI_API_KEY;
+const envKey = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyAQ5aDEy-fGT8f5qlQfIvVJVMSfDr2Y6dM";
 if (envKey) {
     initializeGemini(envKey);
 }
@@ -126,6 +127,50 @@ export const generatePathfinder = async (context, userProfile) => {
         return data;
     } catch (error) {
         throw new Error(classifyError(error));
+    }
+};
+
+// ... (existing imports)
+
+export const generateTerminalCommand = async (input, validCommands) => {
+    if (!genAI || !model) {
+        // Fallback if API not initialized
+        return { command: null, response: "Connect API Key to enable AI navigation." };
+    }
+
+    const context = getAIContext();
+
+    const prompt = `
+    You are the AI core of a developer portfolio terminal.
+    
+    USER INPUT: "${input}"
+    
+    AVAILABLE SYSTEM COMMANDS:
+    ${validCommands.join(", ")}
+    
+    CONTEXT (Project & Experience Data):
+    ${context}
+    
+    YOUR JOB:
+    1. Analyze the user's intent.
+    2. detailed_intent: If they are asking about specific projects, skills, or experience, use the CONTEXT to answer.
+    3. mapped_command: Map their intent to one of the AVAILABLE SYSTEM COMMANDS if applicable (e.g., "show projects" -> "projects", "who are you" -> "about").
+    4. natural_response: Generate a short, terminal-style response (uppercase, concise). If you map a command, the response should announce the action. If you answer a question, keep it brief and cool.
+    
+    RETURN JSON ONLY:
+    {
+      "command": "matched_command_or_null",
+      "response": "NATURAL_LANGUAGE_RESPONSE"
+    }
+    `;
+
+    try {
+        const result = await model.generateContent(prompt);
+        const text = result.response.text();
+        return cleanAndParseJSON(text);
+    } catch (error) {
+        console.error("Gemini Error:", error);
+        return { command: null, response: "ERROR: UNABLE_TO_PARSE_INTENT" };
     }
 };
 

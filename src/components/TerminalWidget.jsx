@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, X, ChevronRight, Minimize2, Maximize2, Info } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { generateTerminalCommand } from "@/lib/gemini";
 
 export default function TerminalWidget() {
     const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +65,7 @@ export default function TerminalWidget() {
         return true;
     };
 
-    const processShellCommand = (cmd, currentHistory) => {
+    const processShellCommand = async (cmd, currentHistory) => {
         let response = "";
 
         // Python Mode Switch
@@ -90,6 +91,7 @@ export default function TerminalWidget() {
             const sectionId = systemCommands[cmd];
             scrollToSection(sectionId);
             response = `EXECUTING JUMP PROTOCOL >> TARGET: [${sectionId.toUpperCase()}]`;
+            setHistory([...currentHistory, { type: "system", content: response }]);
         } else {
             switch (cmd) {
                 case "help":
@@ -102,6 +104,12 @@ export default function TerminalWidget() {
   contact  - Show communication channels
   clear    - Wipe terminal history
   exit     - Terminate session
+
+  // AI & NATURAL LANGUAGE
+  You can type naturally! Try:
+  "Show me your backend projects"
+  "What experience do you have with AWS?"
+  "Take me to the contact page"
   
   // SYSTEM NAVIGATION
   system.profile_summary
@@ -117,51 +125,63 @@ export default function TerminalWidget() {
   system.service_history
   system.knowledge_base
   system.profile_bio`;
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     break;
                 case "about":
                     scrollToSection("about");
                     response = "NAVIGATING TO SYSTEM PROFILE...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     break;
                 case "projects":
                     scrollToSection("projects");
                     response = "ACCESSING PROJECT ARCHIVE...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     break;
                 case "skills":
                     scrollToSection("skills");
                     response = "LOADING TECHNICAL ARSENAL...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     break;
                 case "contact":
                     response = "COMMUNICATION CHANNELS:\n- Email: ankushsinghgandhi@gmail.com\n- LinkedIn: /in/ankushsinghgandhi\n- GitHub: /ankushsinghgandhi\n- Instagram: @warriorwhocodes";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     break;
                 case "communities":
                 case "network":
                 case "system.community_sync":
                     response = "ESTABLISHING SECURE CONNECTION TO NETWORK NODES...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     setTimeout(() => navigate("/communities"), 1000);
                     break;
                 case "system.log_submission":
                     response = "INITIATING FEEDBACK PROTOCOL...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     setTimeout(() => navigate("/testimonialsform"), 1000);
                     break;
                 case "system.comm_protocol":
                     response = "OPENING SECURE CHANNEL...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     setTimeout(() => navigate("/contact"), 1000);
                     break;
                 case "system.service_history":
                     response = "RETRIEVING PROFESSIONAL LOGS...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     setTimeout(() => navigate("/experience"), 1000);
                     break;
                 case "system.profile_bio":
                     response = "ACCESSING FULL BIODATA...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     setTimeout(() => navigate("/about"), 1000);
                     break;
                 case "system.knowledge_base":
                     scrollToSection("dev-library");
                     response = "ACCESSING DEVELOPER LIBRARY...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     break;
                 case "library":
                 case "system.archive_access":
                     response = "REDIRECTING TO KNOWLEDGE_BASE_PORTAL...";
+                    setHistory([...currentHistory, { type: "system", content: response }]);
                     setTimeout(() => navigate("/library"), 1000);
                     break;
                 case "clear":
@@ -173,10 +193,32 @@ export default function TerminalWidget() {
                 case "":
                     return;
                 default:
-                    response = `Command not found: ${cmd}. Type 'help' for options.`;
+                    // AI FALLBACK INTERFACE
+                    const aiStartHistory = [...currentHistory, { type: "system", content: ">> ANALYZING NEURAL INPUT..." }];
+                    setHistory(aiStartHistory);
+
+                    const validCommands = [
+                        "help", "about", "projects", "skills", "library", "contact", "exit",
+                        "system.community_sync", "system.service_history", "system.knowledge_base"
+                    ];
+
+                    const aiResult = await generateTerminalCommand(cmd, validCommands);
+
+                    if (aiResult.command) {
+                        // If AI mapped it to a valid command, execute it!
+                        const explanation = aiResult.response ? `>> ${aiResult.response}` : `>> EXECUTE_CMD: ${aiResult.command}`;
+                        const intermediateHistory = [...currentHistory, { type: "system", content: explanation }];
+
+                        // Recursive call to execute the matched command
+                        // We must ensure we don't start the AI loop again if the AI returns a bad command.
+                        // Since mapped commands are checked first, this is safe.
+                        processShellCommand(aiResult.command, intermediateHistory);
+                    } else {
+                        // Just a conversation response
+                        setHistory([...currentHistory, { type: "system", content: aiResult.response || "ERROR: UNRECOGNIZED_COMMAND_VECTOR" }]);
+                    }
             }
         }
-        setHistory([...currentHistory, { type: "system", content: response }]);
     };
 
     const processPythonCommand = (cmd, currentHistory) => {
@@ -322,7 +364,7 @@ Namespaces are one honking great idea -- let's do more of those!`;
                             <div className="flex items-center gap-3">
                                 <button
                                     onClick={() => setShowHelp(!showHelp)}
-                                    className={`flex items-center gap-2 px-3 py-1 mr-2 rounded text-[10px] font-bold tracking-wider transition-all border ${showHelp
+                                    className={`flex items-center gap-2 px-3 py-1 mr-2 rounded-none text-[10px] font-bold tracking-wider transition-all border ${showHelp
                                         ? "bg-purple-500 text-white border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
                                         : "bg-neutral-800 text-gray-300 border-neutral-700 hover:border-purple-500 hover:text-white"
                                         }`}
@@ -404,6 +446,21 @@ Namespaces are one honking great idea -- let's do more of those!`;
                                                 <p className="text-white">Hello World</p>
                                                 <p className="text-blue-400">&gt;&gt;&gt; exit()</p>
                                                 <p className="text-gray-500 italic">// Return to Shell</p>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-white font-bold mb-2 text-xs uppercase bg-neutral-900/50 p-1 inline-block">
+                                                04. AI Intelligence
+                                            </h4>
+                                            <p className="text-gray-400 text-xs leading-relaxed mb-2">
+                                                Integrated Gemini reasoning core allows for natural language inputs.
+                                            </p>
+                                            <div className="bg-neutral-900 p-2 border-l-2 border-green-500 font-mono text-xs space-y-1">
+                                                <p className="text-blue-400">&gt; Show me your backend projects</p>
+                                                <p className="text-blue-400">&gt; What is your experience with AWS?</p>
+                                                <p className="text-blue-400">&gt; Take me to the contact page</p>
+                                                <p className="text-gray-500 italic">// Context-aware navigation & answers</p>
                                             </div>
                                         </div>
                                     </div>
