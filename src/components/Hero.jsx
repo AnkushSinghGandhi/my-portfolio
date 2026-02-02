@@ -6,23 +6,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export default function Hero() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const containerRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    const { left, top } = containerRef.current.getBoundingClientRect();
-    setPosition({
-      x: e.clientX - left,
-      y: e.clientY - top,
-    });
-  };
-
   return (
     <section
-      ref={containerRef}
       className="relative overflow-hidden bg-black text-gray-100 min-h-screen flex items-center px-6 md:px-16 lg:px-20 pt-24 pb-12 selection:bg-purple-500/30"
-      onMouseMove={handleMouseMove}
     >
       {/* 1. Background Grid Pattern - Much Subtler */}
       <div
@@ -33,13 +19,13 @@ export default function Hero() {
         }}
       />
 
-      {/* 2. Spotlight Effect - Softer */}
-      <div
+      {/* 2. Spotlight Effect - REMOVED */}
+      {/* <div
         className="absolute inset-0 pointer-events-none z-0 transition-opacity duration-300"
         style={{
           background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(120, 119, 198, 0.08), transparent 40%)`,
         }}
-      />
+      /> */}
 
       {/* Ambient Glows - Deep and Dark */}
       <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-indigo-900/10 rounded-full blur-[120px] pointer-events-none" />
