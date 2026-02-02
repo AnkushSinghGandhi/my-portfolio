@@ -10,32 +10,34 @@ export default function Stats() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.8, delay: 0.3 }}
-      className="relative flex flex-col lg:flex-col items-center lg:items-end text-center lg:text-right gap-6 md:gap-8 
-                 xs:flex-row xs:justify-center xs:gap-6 w-full"
+      className="flex flex-col gap-8 w-full"
     >
-      {/* Vertical Divider - only on desktop */}
-      <div className="hidden lg:block absolute left-0 lg:-left-8 top-0 h-full w-[2px] bg-gray-700 opacity-60"></div>
-
       {stats.map((stat, i) => (
         <motion.div
           key={i}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.2 }}
-          className="relative"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: i * 0.1 + 0.3 }}
+          className="relative flex items-center justify-between group"
         >
-          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none">
-            <span className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.05)]">
+          <div className="flex flex-col items-start">
+            <h3 className="text-4xl sm:text-5xl font-bold text-white tracking-tighter leading-none font-mono">
               <Counter target={stat.value} duration={stat.duration} />
-              <span className="text-gray-400">+</span>
-            </span>
-          </h3>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mt-1 uppercase tracking-widest">
-            {stat.label}
-          </p>
+              <span className="text-purple-500 ml-1">+</span>
+            </h3>
+            <p className="text-xs text-gray-400 mt-1 uppercase tracking-widest font-medium">
+              {stat.label}
+            </p>
+          </div>
+
+          {/* Decorative dashed line */}
+          <div className="hidden sm:block flex-1 mx-4 h-[1px] bg-neutral-800 group-hover:bg-neutral-700 transition-colors border-t border-dashed border-gray-700/50" />
+
+          {/* Status Dot */}
+          <div className="hidden sm:block w-2 h-2 rounded-full bg-neutral-800 group-hover:bg-green-500 transition-colors duration-300" />
         </motion.div>
       ))}
     </motion.div>
