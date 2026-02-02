@@ -30,10 +30,11 @@ export const dsaRoadmap = {
     blogLink: "https://dev.to/ankushsinghgandhi/tips-strategies-and-patterns-to-solve-and-identify-dsa-problems-4jja",
     intro: "This roadmap helps you crack ₹10–15 LPA roles efficiently in 15-30 days by focusing on high-impact core DSA topics. For those aiming higher, Tier 4 covers advanced data structures for top-tier dream companies — which may take 3-4 months to master.",
 
+    repoLink: "https://github.com/AnkushSinghGandhi/DSA-OneShot",
     primer: {
         title: "🧠 Time Complexity Primer",
         description: "Before jumping into Tier 1, understand Big-O complexities. Know worst-case time complexity, choose optimal solutions, and understand space-time tradeoffs.",
-        link: "https://dev.to/ankushsinghgandhi/time-complexity-primer-understand-big-o-like-a-kid-with-candies-2ih0",
+        link: "/library/dsa-roadmap/time-complexity",
     },
 
     tiers: [
@@ -128,24 +129,44 @@ export const dsaRoadmap = {
             description: "Advanced concepts for top-tier companies. Takes 3-4 months.",
             topics: [
                 {
+                    title: "Skipped Data Structures",
+                    percentage: "",
+                    items: ["Doubly & Circular Linked List", "Queue using Stacks & Stack using Queues", "Basic Heap operations", "Trie ops", "Disjoint Set Union", "HashMap from scratch"],
+                },
+                {
                     title: "Advanced Trees",
                     percentage: "",
-                    items: ["AVL Trees with rotations", "Segment Trees", "Fenwick Tree (BIT)"],
+                    items: ["AVL Trees with rotations", "Red-Black Tree basics", "Segment Trees", "Fenwick Tree (BIT)", "Advanced Trie ops"],
                 },
                 {
                     title: "Advanced Graphs",
                     percentage: "",
-                    items: ["SCCs (Kosaraju/Tarjan)", "Bellman-Ford", "Network Flow"],
+                    items: ["SCCs (Kosaraju/Tarjan)", "MST (Kruskal/Prim)", "Bellman-Ford", "Topological Sort", "Network Flow", "Cycle detection"],
+                },
+                {
+                    title: "Advanced DP",
+                    percentage: "",
+                    items: ["DP on Trees", "Bitmask DP", "DP optimization techniques", "DP on grids", "Sequence alignment"],
                 },
                 {
                     title: "String Algorithms",
                     percentage: "",
-                    items: ["KMP, Rabin-Karp", "Z-algorithm", "Suffix Arrays"],
+                    items: ["KMP", "Rabin-Karp", "Z-algorithm", "Suffix Arrays & Trees", "Manacher’s Algorithm"],
+                },
+                {
+                    title: "Number Theory & Math",
+                    percentage: "",
+                    items: ["Modular exponentiation", "Sieve of Eratosthenes", "Euclidean GCD", "Combinatorics", "Chinese Remainder Theorem"],
                 },
                 {
                     title: "Bit Manipulation",
                     percentage: "",
-                    items: ["Common bit tricks", "XOR problems", "Bitmask DP"],
+                    items: ["Common bit tricks", "Brian Kernighan’s algo", "Bitmasking", "XOR problems"],
+                },
+                {
+                    title: "Advanced Data Structures",
+                    percentage: "",
+                    items: ["Disjoint Set Union", "Skip Lists", "Splay Trees", "Bloom Filters"],
                 },
             ],
         },

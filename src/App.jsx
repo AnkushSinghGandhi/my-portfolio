@@ -21,6 +21,9 @@ import Communities from "./pages/Communities";
 import Library from "./pages/Library";
 import DSARoadmap from "./pages/DSARoadmap";
 import OneShotPage from "./pages/OneShotPage";
+import DSAPractice from "./pages/DSAPractice";
+import DSAConcepts from "./pages/DSAConcepts";
+import TimeComplexityPrimer from "./pages/TimeComplexityPrimer";
 import Links from "./pages/Links";
 import Custom404 from "./pages/404";
 import TerminalWidget from "./components/TerminalWidget";
@@ -75,6 +78,10 @@ export default function App() {
         <Route path="/communities" element={<Communities />} />
         <Route path="/library" element={<Library />} />
         <Route path="/library/dsa-roadmap" element={<DSARoadmap />} />
+        <Route path="/library/dsa-roadmap/problems" element={<DSAPractice />} />
+        <Route path="/library/dsa-roadmap/patterns" element={<DSAPractice />} />
+        <Route path="/library/dsa-roadmap/concepts" element={<DSAConcepts />} />
+        <Route path="/library/dsa-roadmap/time-complexity" element={<TimeComplexityPrimer />} />
         <Route path="/library/mysql-one" element={<OneShotPage data={mysqlRoadmap} />} />
         <Route path="/library/redis-one" element={<OneShotPage data={redisRoadmap} />} />
         <Route path="/library/django-orm-one" element={<OneShotPage data={djangoRoadmap} />} />
