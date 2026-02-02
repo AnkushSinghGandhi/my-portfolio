@@ -21,14 +21,14 @@ export default function AboutMe() {
         >
           <div className="relative group">
             {/* Tech Frame/Border */}
-            <div className="absolute -inset-4 border border-neutral-800 rounded-lg group-hover:border-purple-500/30 transition-colors duration-500" />
-            <div className="absolute -inset-4 bg-neutral-900/20 rounded-lg -z-10" />
+            <div className="absolute -inset-4 border border-neutral-800 group-hover:border-purple-500/30 transition-colors duration-500" />
+            <div className="absolute -inset-4 bg-neutral-900/20 -z-10" />
 
             {/* Corner Markers */}
             <div className="absolute -top-4 -left-4 w-4 h-4 border-t-2 border-l-2 border-purple-500 opacity-50 group-hover:opacity-100 transition-opacity" />
             <div className="absolute -bottom-4 -right-4 w-4 h-4 border-b-2 border-r-2 border-purple-500 opacity-50 group-hover:opacity-100 transition-opacity" />
 
-            <div className="relative w-full max-w-md h-[400px] overflow-hidden rounded bg-neutral-900 border border-neutral-800">
+            <div className="relative w-full max-w-md h-[400px] overflow-hidden bg-neutral-900 border border-neutral-800">
               <CachedImage
                 src={profilePic}
                 alt="Ankush Singh Gandhi"
