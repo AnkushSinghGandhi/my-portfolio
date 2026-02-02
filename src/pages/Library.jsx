@@ -354,7 +354,7 @@ function LibraryCard({ item, isLocked, isFeatured, onAiAnalyze }) {
 
             {/* Header */}
             <div className="flex items-center justify-between mb-8 relative z-10">
-                <div className={`p-3 bg-neutral-800/50 rounded-lg border border-neutral-700/50 ${theme.border} transition-colors`}>
+                <div className={`p-3 bg-neutral-800/50 border border-neutral-700/50 ${theme.border} transition-colors`}>
                     <Icon className={`w-8 h-8 text-neutral-400 ${theme.accent} transition-colors`} />
                 </div>
                 {!isLocked && (
@@ -365,7 +365,7 @@ function LibraryCard({ item, isLocked, isFeatured, onAiAnalyze }) {
                                 e.stopPropagation();
                                 onAiAnalyze(e, item);
                             }}
-                            className="p-2 hover:bg-white/10 rounded-full transition-all group/ai"
+                            className="p-2 hover:bg-white/10 transition-all group/ai"
                             title="AI Analysis"
                         >
                             <Sparkles className="w-5 h-5 text-gray-500 group-hover:text-purple-400 group-hover/ai:scale-110 transition-all" />
