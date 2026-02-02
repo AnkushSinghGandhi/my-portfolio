@@ -13,10 +13,10 @@ export default function Navbar() {
     { name: "Experience", path: "/experience" },
     { name: "Projects", path: "/projects" },
     { name: "Archive", path: "/library" },
-    { name: "CLIENT_RECORDS", path: "/testimonials" },
+    { name: "Client_Records", path: "/testimonials" },
     { name: "Contact", path: "/contact" },
-    { name: "ABOUT_ME", path: "/about" },
-    { name: "NETWORK", path: "/communities" },
+    { name: "About_Me", path: "/about" },
+    { name: "Network", path: "/communities" },
   ];
 
   return (

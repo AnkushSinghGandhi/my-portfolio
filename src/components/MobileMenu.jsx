@@ -10,7 +10,7 @@ export default function MobileMenu({ setIsMenuOpen, links }) {
           <Link
             key={link.name}
             to={link.path}
-            className={`text-2xl transition-colors duration-200 ${isActive ? "text-gray-700 font-bold" : "text-gray-100"
+            className={`text-2xl transition-colors duration-200 font-mono uppercase tracking-widest ${isActive ? "text-gray-700 font-bold" : "text-gray-100"
               }`}
             onClick={() => setIsMenuOpen(false)}
           >
