@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
 import { cheatsheets, blogs, writingLinks } from "@/data/library";
-import { ArrowUpRight, BookOpen, Linkedin, ExternalLink } from "lucide-react";
+import { ArrowUpRight, BookOpen, Linkedin, ExternalLink, Rocket, Terminal } from "lucide-react";
 import { FaDev } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+const iconMap = {
+    "Rocket": Rocket,
+    "Terminal": Terminal,
+};
+
 export default function DevLibrary() {
     const dsaRoadmap = cheatsheets.find(c => c.id === "dsa-roadmap");
+    const Icon = iconMap[dsaRoadmap.icon] || Rocket;
+
     const otherItems = [
         ...cheatsheets.filter(c => c.id !== "dsa-roadmap" && c.featured),
         ...blogs.slice(0, 2)
@@ -64,8 +71,8 @@ export default function DevLibrary() {
                             to={dsaRoadmap.link}
                             className="group relative block h-full bg-neutral-900/40 border border-neutral-800 hover:border-purple-500/50 transition-all duration-500"
                         >
-                            <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
-                                <span className="text-5xl">{dsaRoadmap.icon}</span>
+                            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform rotate-12 scale-150">
+                                <Icon size={200} strokeWidth={1} />
                             </div>
 
                             <div className="p-8 sm:p-12">
