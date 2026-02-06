@@ -64,28 +64,28 @@ export default function HomeAbout() {
             Ankush Singh Gandhi
           </h2>
 
-          {/* Social Links - Monochrome to Color */}
+          {/* Social Links - Colored by Default (slightly muted) */}
           <div className="flex justify-center md:justify-start gap-6 mb-8">
             <a href="https://www.linkedin.com/in/ankushsinghgandhi/" target="_blank" rel="noopener noreferrer">
-              <Linkedin className="h-6 w-6 text-gray-400 grayscale hover:grayscale-0 hover:text-[#0077b5] transition-all duration-300" />
+              <Linkedin className="h-6 w-6 text-[#0077b5] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" />
             </a>
             <a href="https://github.com/AnkushSinghGandhi" target="_blank" rel="noopener noreferrer">
-              <Github className="h-6 w-6 text-gray-400 grayscale hover:grayscale-0 hover:text-black transition-all duration-300" />
+              <Github className="h-6 w-6 text-black opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" />
             </a>
             <a href="https://dev.to/ankushsinghgandhi" target="_blank" rel="noopener noreferrer">
-              <FaDev className="h-6 w-6 text-gray-400 grayscale hover:grayscale-0 hover:text-black transition-all duration-300" />
+              <FaDev className="h-6 w-6 text-black opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" />
             </a>
             <a href="https://x.com/ankushsgandhi" target="_blank" rel="noopener noreferrer">
-              <Twitter className="h-6 w-6 text-gray-400 grayscale hover:grayscale-0 hover:text-blue-400 transition-all duration-300" />
+              <Twitter className="h-6 w-6 text-[#1DA1F2] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" />
             </a>
             <a href="https://instagram.com/warriorwhocodes" target="_blank" rel="noopener noreferrer">
-              <Instagram className="h-6 w-6 text-gray-400 grayscale hover:grayscale-0 hover:text-pink-500 transition-all duration-300" />
+              <Instagram className="h-6 w-6 text-[#E4405F] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" />
             </a>
             <a href="https://www.upwork.com/freelancers/~015ea2207bd0b0f893" target="_blank" rel="noopener noreferrer">
-              <FaUpwork className="h-6 w-6 text-gray-400 grayscale hover:grayscale-0 hover:text-[#6fda44] transition-all duration-300" />
+              <FaUpwork className="h-6 w-6 text-[#6fda44] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" />
             </a>
             <a href="mailto:ankushsinghgandhi@gmail.com">
-              <Mail className="h-6 w-6 text-gray-400 grayscale hover:grayscale-0 hover:text-red-500 transition-all duration-300" />
+              <Mail className="h-6 w-6 text-[#EA4335] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" />
             </a>
           </div>
 
