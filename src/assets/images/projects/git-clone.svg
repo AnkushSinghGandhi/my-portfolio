@@ -1,15 +1,1 @@
-<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#000000;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0f9b0f;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#grad)" />
-  <circle cx="200" cy="250" r="10" fill="#4ade80" />
-  <circle cx="600" cy="250" r="10" fill="#4ade80" />
-  <path d="M200 250 Q 400 100 600 250" stroke="#4ade80" stroke-width="2" fill="none" opacity="0.5"/>
-  <path d="M200 250 Q 400 400 600 250" stroke="#4ade80" stroke-width="2" fill="none" opacity="0.5"/>
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="72" fill="white" letter-spacing="4" style="text-shadow: 0 0 20px rgba(74,222,128,0.5);">GIT</text>
-  <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="18" fill="rgba(255,255,255,0.6)" letter-spacing="2">VERSION CONTROL</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><defs><linearGradient id="grad" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" style="stop-color:#000;stop-opacity:1"/><stop offset="100%" style="stop-color:#0f9b0f;stop-opacity:1"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#grad)"/><circle cx="200" cy="250" r="10" fill="#4ade80"/><circle cx="600" cy="250" r="10" fill="#4ade80"/><path fill="none" stroke="#4ade80" stroke-width="2" d="M200 250 Q 400 100 600 250" opacity=".5"/><path fill="none" stroke="#4ade80" stroke-width="2" d="M200 250 Q 400 400 600 250" opacity=".5"/><text x="50%" y="50%" fill="#fff" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="72" font-weight="900" letter-spacing="4" text-anchor="middle" style="text-shadow:0 0 20px rgba(74,222,128,.5)">GIT</text><text x="50%" y="65%" fill="rgba(255,255,255,0.6)" dominant-baseline="middle" font-family="monospace" font-size="18" letter-spacing="2" text-anchor="middle">VERSION CONTROL</text></svg>
