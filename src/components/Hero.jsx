@@ -47,7 +47,7 @@ export default function Hero() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                <span className="text-[10px] font-mono font-medium text-neutral-400 tracking-wider uppercase">System Online</span>
+                <span className="text-[10px] font-mono font-medium text-neutral-400 tracking-wider uppercase">Available for Projects</span>
               </div>
             </div>
 
@@ -72,13 +72,13 @@ export default function Hero() {
             <Link to="/contact" className="w-full sm:w-auto">
               <button className="w-full group relative flex items-center justify-center gap-3 bg-white text-black px-8 py-3.5 font-bold text-sm tracking-wide uppercase overflow-hidden transition-all hover:bg-neutral-200">
                 <span className="relative z-10 flex items-center gap-2">
-                  Initialize Project <ArrowRight className="w-4 h-4" />
+                  Start Your Project <ArrowRight className="w-4 h-4" />
                 </span>
               </button>
             </Link>
             <Link to="/experience" className="w-full sm:w-auto">
               <button className="w-full group flex items-center justify-center gap-3 bg-transparent border border-neutral-700 text-neutral-300 px-8 py-3.5 font-mono text-sm tracking-wide uppercase hover:border-white hover:text-white transition-all">
-                <span>View System Logs</span>
+                <span>View My Experience</span>
               </button>
             </Link>
           </div>

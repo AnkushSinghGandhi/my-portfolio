@@ -23,7 +23,7 @@ export default function Stats() {
           transition={{ delay: i * 0.1 + 0.3 }}
           className="relative flex items-center justify-between group"
         >
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-end text-right">
             <h3 className="text-4xl sm:text-5xl font-bold text-white tracking-tighter leading-none font-mono">
               <Counter target={stat.value} duration={stat.duration} />
               <span className="text-purple-500 ml-1">+</span>
