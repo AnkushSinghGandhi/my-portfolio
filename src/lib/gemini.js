@@ -11,7 +11,10 @@ export const initializeGemini = (apiKey) => {
     model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 };
 
-const envKey = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyAQ5aDEy-fGT8f5qlQfIvVJVMSfDr2Y6dM";
+const primaryKey = import.meta.env.VITE_GEMINI_API_KEY_PRIMARY;
+const fallbackKey = import.meta.env.VITE_GEMINI_API_KEY_FALLBACK;
+const envKey = primaryKey || fallbackKey;
+
 if (envKey) {
     initializeGemini(envKey);
 }

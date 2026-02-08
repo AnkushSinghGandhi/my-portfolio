@@ -9,7 +9,7 @@ import TutorWindow from "./TutorWindow";
 const AiToolbox = ({ context }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeMode, setActiveMode] = useState(null); // 'quiz', 'roadmap', 'pathfinder', 'tutor'
-    const envKey = import.meta.env.VITE_GEMINI_API_KEY || "AIzaSyAQ5aDEy-fGT8f5qlQfIvVJVMSfDr2Y6dM";
+    const envKey = import.meta.env.VITE_GEMINI_API_KEY_PRIMARY || import.meta.env.VITE_GEMINI_API_KEY_FALLBACK;
     const [apiKey, setApiKey] = useState(localStorage.getItem("gemini_key") || "");
     const [isKeyModalOpen, setIsKeyModalOpen] = useState(false);
     const [pendingMode, setPendingMode] = useState(null);
