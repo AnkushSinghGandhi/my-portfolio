@@ -3,25 +3,52 @@ export const codingProblems = [
     {
         "title": "Number-Based Problems",
         "questions": [
-            "Reverse a number",
-            "Reverse a number using list/string",
-            "Count number of digits in a given number",
-            "Check if a number is palindrome using while loop",
-            "Check if a number is palindrome using string slicing",
-            "Check if a number is prime using flag and `n // 2 + 1`",
-            "Check if a number is prime using for-else loop",
-            "Find all prime numbers in a range using for-else",
-            "Find all prime numbers in a range using flag method",
-            "Find sum of digits of a number",
-            "Find factorial of a number (using recursion)",
-            "Find factorial of a number (using loop)",
-            "Check if a number is an Armstrong number",
-            "Find all Armstrong numbers in a range",
-            "Find sum of factorial of digits of a number (like 145 = 1! + 4! + 5!)",
-            "Find second largest number using for loop",
-            "Find second largest number using reverse and sort",
-            "Find second largest number using set and max()",
-            "Find missing number in a range (1 to n)",
+            {
+                "title": "Reverse a number",
+                "explanation": "To reverse a number, we repeatedly extract the last digit using the modulo operator (%) and append it to a new number, shifting the existing digits of the reversed number by one place (multiplying by 10) in each step.\n\n```text\nOriginal: 123\nStep 1: 123 % 10 = 3, Rev = 0 * 10 + 3 = 3, Num = 123 // 10 = 12\nStep 2: 12 % 10 = 2,  Rev = 3 * 10 + 2 = 32, Num = 12 // 10 = 1\nStep 3: 1 % 10 = 1,   Rev = 32 * 10 + 1 = 321, Num = 1 // 10 = 0\nResult: 321\n```",
+                "solution": "```python\ndef reverse_number(n):\n    rev = 0\n    while n > 0:\n        rev = (rev * 10) + (n % 10)\n        n //= 10\n    return rev\n```"
+            },
+            {
+                "title": "Count number of digits",
+                "explanation": "Digits can be counted by repeatedly dividing the number by 10 until it reaches zero. Each division represents one digit. Alternatively, converting the number to a string and taking the string length is a quick way in Python.",
+                "solution": "```python\n# Mathematical Approach\ndef count_digits(n):\n    count = 0\n    while n > 0:\n        n //= 10\n        count += 1\n    return count\n\n# String Slicing Approach\ndef count_digits_str(n):\n    return len(str(n))\n```"
+            },
+            {
+                "title": "Check if integer is palindrome",
+                "explanation": "A number is a palindrome if it reads the same from left to right as from right to left (e.g., 121). We can verify this by reversing the number and checking if the reverse equals the original.",
+                "solution": "```python\ndef is_palindrome(n):\n    # Method 1: Slicing\n    return str(n) == str(n)[::-1]\n\n    # Method 2: Mathematical (Reversing)\n    # val = reverse_number(n)\n    # return val == n\n```"
+            },
+            {
+                "title": "Check if number is prime",
+                "explanation": "A prime number is only divisible by 1 and itself. We check for divisibility from 2 up to the square root of the number (or n // 2).\n\n```text\nChecking 7:\n7 / 2? No\n7 / 3? No\nEnd check (sqrt(7) is ~2.6). Result: PRIME\n```",
+                "solution": "```python\ndef is_prime(n):\n    if n <= 1: return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n```"
+            },
+            {
+                "title": "Check Armstrong number",
+                "explanation": "A number is an Armstrong number (Narcissistic) if the sum of its own digits each raised to the power of the number of digits equals the number itself (e.g., 153 = 1³ + 5³ + 3³).",
+                "solution": "```python\ndef is_armstrong(n):\n    s = str(n)\n    power = len(s)\n    total = sum(int(digit)**power for digit in s)\n    return total == n\n```"
+            },
+            {
+                "title": "Prime numbers in range",
+                "explanation": "Iterate from the start to the end of the range. For each number, apply the primality test logic.",
+                "solution": "```python\ndef find_primes_in_range(start, end):\n    primes = []\n    for num in range(start, end + 1):\n        if num > 1:\n            for i in range(2, int(num**0.5) + 1):\n                if (num % i) == 0:\n                    break\n            else:\n                primes.append(num)\n    return primes\n```"
+            },
+            {
+                "title": "Factorial of a number",
+                "explanation": "Factorial of n (n!) is the product of all integers from 1 up to n. It can be solved iteratively with a loop or recursively.",
+                "solution": "```python\n# Recursive Approach\ndef factorial(n):\n    if n == 0 or n == 1: return 1\n    return n * factorial(n - 1)\n```"
+            },
+            {
+                "title": "Second largest number",
+                "explanation": "The most efficient way is to keep track of the largest and second-largest numbers in a single pass.",
+                "solution": "```python\ndef second_largest(nums):\n    first = second = float('-inf')\n    for n in nums:\n        if n > first:\n            second = first\n            first = n\n        elif n > second and n != first:\n            second = n\n    return second\n```"
+            },
+            {
+                "title": "Find missing number",
+                "explanation": "Using the formula for the sum of the first n natural numbers: Sum = n * (n + 1) // 2. The missing number is the difference between this expected sum and the actual sum.",
+                "solution": "```python\ndef find_missing(nums, n):\n    expected_sum = n * (n + 1) // 2\n    return expected_sum - sum(nums)\n```"
+            },
+            "Find sum of digits",
             "Implement a basic calculator (`+`, `-`, `*`, `/`)",
             "Check if a number is a factorial Armstrong number",
             "Add 2 numbers using decorator",
@@ -34,95 +61,93 @@ export const codingProblems = [
     {
         "title": "String Manipulation",
         "questions": [
-            "Reverse a string",
-            "Reverse each word in a string",
-            "Reverse words in a sentence (`\"the sky is blue\"` → `\"blue is sky the\"`)",
-            "Check if a string is palindrome using slicing",
-            "Check if a string is palindrome using indexing/for loop",
-            "Check if a string is palindrome using reversed and join",
-            "Check if a string is palindrome using while loop",
-            "Count number of words in a string",
-            "Count the occurrences of a character",
-            "Find duplicate characters in a string",
-            "Count vowels and consonants in a string",
-            "Print each letter twice from a string",
-            "Convert `Subbu123raj` → `Subburaj` and `123`",
-            "Convert `32400121200` → `32412120000`",
-            "Convert `32400121200` → `00003241212`",
-            "Convert `\"aabbcccdd\"` → `\"a2b2c3d2\"`",
-            "Convert `\"aBACbcEDed\"` → `\"abcde\"` and `\"ABCDE\"`",
-            "Remove all vowels from a string",
-            "Perform string manipulation using list",
-            "Perform string manipulation using string methods",
-            "Remove all non-alphabetic characters",
-            "Check if two strings are anagrams",
-            "Check if two strings are rotations of each other",
-            "Group strings with same characters (group anagrams)",
-            "Convert string to int without using `int()`",
-            "Implement custom `split()` or `join()` functions",
-            "Find first non-repeating character in a string",
-            "Find max repeated character without O(n²)",
-            "Find maximum repeating character",
-            "Remove duplicates from a string",
-            "Check if string contains only digits",
-            "Check if string has all unique characters",
+            {
+                "title": "Reverse a string",
+                "explanation": "Strings in Python are immutable, but we can easily reverse them using slicing (`[::-1]`) or by joining a reversed iterator.",
+                "solution": "```python\ndef reverse_string(s):\n    # Method 1: Slicing (Fastest/Pythonic)\n    return s[::-1]\n\n    # Method 2: Reverse iterator\n    # return \"\".join(reversed(s))\n```"
+            },
+            {
+                "title": "Reverse each word",
+                "explanation": "To reverse each word while keeping the word order, we split the string into words, reverse each individual word, and join them back with spaces.\n\nExample: `\"Hello World\"` → `\"olleH dlroW\"` ",
+                "solution": "```python\ndef reverse_each_word(s):\n    words = s.split()\n    reversed_words = [word[::-1] for word in words]\n    return \" \".join(reversed_words)\n```"
+            },
+            {
+                "title": "Check string palindrome",
+                "explanation": "Similar to numbers, a string is a palindrome if it's equal to its reverse. For real-world cases, we usually ignore case and spaces.",
+                "solution": "```python\ndef is_string_palindrome(s):\n    clean_s = \"\".join(char.lower() for char in s if char.isalnum())\n    return clean_s == clean_s[::-1]\n```"
+            },
+            {
+                "title": "Count vowels/consonants",
+                "explanation": "Iterate through the string and check if each character belongs to a set of vowels. If it's an alphabet but not a vowel, it's a consonant.",
+                "solution": "```python\ndef count_v_c(s):\n    vowels = \"aeiouAEIOU\"\n    v_count = 0\n    c_count = 0\n    for char in s:\n        if char.isalpha():\n            if char in vowels:\n                v_count += 1\n            else:\n                c_count += 1\n    return v_count, c_count\n```"
+            },
+            {
+                "title": "Check anagrams",
+                "explanation": "Two strings are anagrams if they contain the same characters with the same frequencies. Sorting both strings and comparing them is the easiest way.",
+                "solution": "```python\ndef are_anagrams(s1, s2):\n    return sorted(s1) == sorted(s2)\n```"
+            },
+            {
+                "title": "Remove all vowels",
+                "explanation": "Create a new string by filtering out characters that are found in the vowel set.",
+                "solution": "```python\ndef remove_vowels(s):\n    vowels = \"aeiouAEIOU\"\n    return \"\".join(c for c in s if c not in vowels)\n```"
+            },
+            {
+                "title": "Max repeated character",
+                "explanation": "Use a dictionary to count frequencies, then find the key with the maximum value.",
+                "solution": "```python\ndef max_repeating(s):\n    if not s: return None\n    freq = {}\n    for c in s:\n        freq[c] = freq.get(c, 0) + 1\n    return max(freq, key=freq.get)\n```"
+            },
+            "Reverse words in a sentence",
+            "Count number of words",
+            "Find duplicate characters",
             "Convert string to title case",
-            "Longest substring without repeating characters",
-            "Compress string (run-length encoding)",
-            "Check if one string is a subsequence of another",
-            "Count palindromic substrings",
-            "Find longest palindromic substring",
-            "Convert string to integer manually (`atoi`)",
-            "Check if string is a valid palindrome (ignoring spaces, punctuation, case)",
-            "Check if two strings are isomorphic",
-            "Find all permutations of a string (without duplicates)",
-            "Decode a string with encoded pattern (`\"3[a2[c]]\"` → `\"accaccacc\"`)",
-            "Find all anagrams of a string within another string",
-            "Implement `strstr()` / find substring",
-            "Implement `strstr()` using KMP algorithm",
-            "Validate IPv4 address",
-            "Multiply strings (large numbers)",
-            "Remove adjacent duplicates recursively",
-            "Check if parentheses are balanced",
-            "Group anagrams together",
-            "Check if string is a valid number (`\"123\"`, `\"-123.45\"`, `\"1e10\"`)"
+            "Longest substring without repeats"
         ]
     },
     {
         "title": "Loop, Logic, and Recursion",
         "questions": [
-            "Generate Fibonacci series using while loop",
-            "Generate Fibonacci series using for loop",
-            "Generate Fibonacci series using recursion (optimized)",
-            "Generate Fibonacci series using generator",
-            "Generate Fibonacci series without using third variable",
-            "Compress string using for loop (`aabbbcciiiie` → `a2b3c2i4e1`)",
-            "Compress string using while loop",
-            "Find pair with sum equal to a given number in a list",
-            "Flatten a nested list (recursively / using `itertools`)",
-            "Rotate list or string by k positions",
-            "Recursion by reversing a list",
-            "Check if brackets/parentheses are balanced"
+            {
+                "title": "Generate Fibonacci series",
+                "explanation": "The Fibonacci series is a sequence where each number is the sum of the two preceding ones, starting from 0 and 1. We use a simple loop and swap variables to generate it.",
+                "solution": "```python\ndef fibonacci(n):\n    a, b = 0, 1\n    result = []\n    for _ in range(n):\n        result.append(a)\n        a, b = b, a + b\n    return result\n```"
+            },
+            {
+                "title": "Check balanced brackets",
+                "explanation": "Use a stack to track opening brackets. For every closing bracket, check if it matches the top of the stack. If at the end the stack is empty, it's balanced.",
+                "solution": "```python\ndef is_balanced(s):\n    stack = []\n    pairs = {')': '(', '}': '{', ']': '['}\n    for char in s:\n        if char in pairs.values():\n            stack.append(char)\n        elif char in pairs:\n            if not stack or stack.pop() != pairs[char]:\n                return False\n    return len(stack) == 0\n```"
+            },
+            "Generate Fibonacci series (Recursion)",
+            "Compress string using loop",
+            "Flatten a nested list"
         ]
     },
     {
         "title": "Data Structures: Lists, Sets, Dictionaries",
         "questions": [
-            "Sort a list without using `sort()` or `sorted()`",
+            {
+                "title": "Find common elements",
+                "explanation": "The most efficient way to find intersection is by converting one or both arrays to sets and using the intersection operator (&).",
+                "solution": "```python\ndef find_common(arr1, arr2):\n    # Method 1: Sets (Recommended)\n    return list(set(arr1) & set(arr2))\n```"
+            },
+            {
+                "title": "Count characters (Freq)",
+                "explanation": "Iterate through the string and maintain a count in a dictionary. Keys are characters, values are their frequencies.",
+                "solution": "```python\ndef char_frequency(s):\n    freq = {}\n    for char in s:\n        freq[char] = freq.get(char, 0) + 1\n    return freq\n```"
+            },
+            {
+                "title": "Sort a list (Bubble)",
+                "explanation": "Implementing a simple sorting algorithm like Bubble Sort. Adjacent elements are compared and swapped if they are in the wrong order.",
+                "solution": "```python\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr\n```"
+            },
+            {
+                "title": "Sort dict by values",
+                "explanation": "Use the sorted() function with a custom key that accesses the dictionary items' values (index 1).",
+                "solution": "```python\ndef sort_dict_by_value(d):\n    return dict(sorted(d.items(), key=lambda item: item[1]))\n```"
+            },
             "Sort a dictionary using keys",
-            "Sort a dictionary using values",
-            "Sort a dictionary with custom comparator",
-            "Count all characters in a string using dictionary",
-            "Count least repeating character using dictionary",
-            "Count least repeating character using `Counter`",
-            "Count a particular element using `.count()`",
-            "Count a particular element without `.count()` (use dict)",
-            "Find common elements between two arrays/lists",
-            "Find first and last element of an ArrayList",
-            "Use list comprehension to filter or transform data",
-            "Use lambda function to perform simple operations",
-            "Use `map()`, `filter()`, `reduce()` with lambda",
-            "Difference between list `append()` and `extend()`"
+            "Sort with custom comparator",
+            "Count repeating characters",
+            "Common elements in arrays"
         ]
     },
     {
@@ -134,10 +159,14 @@ export const codingProblems = [
     {
         "title": "Bonus Practice Challenges",
         "questions": [
-            "Implement FizzBuzz using for loop",
-            "Implement FizzBuzz using dictionary",
-            "Group characters into lowercase and uppercase separately",
-            "Advanced: Group anagrams or isomorphic strings"
+            {
+                "title": "Implement FizzBuzz",
+                "explanation": "Print numbers from 1 to n. For multiples of 3, print 'Fizz'; for multiples of 5, print 'Buzz'; for multiples of both, print 'FizzBuzz'.",
+                "solution": "```python\ndef fizz_buzz(n):\n    for i in range(1, n + 1):\n        if i % 3 == 0 and i % 5 == 0:\n            print('FizzBuzz')\n        elif i % 3 == 0:\n            print('Fizz')\n        elif i % 5 == 0:\n            print('Buzz')\n        else:\n            print(i)\n```"
+            },
+            "FizzBuzz using dictionary",
+            "Group characters by case",
+            "Advanced anagram grouping"
         ]
     }
 ];
