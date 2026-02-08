@@ -122,3 +122,6 @@ dist
 
 # Temporary
 rewrite_history.py
+
+# Netlify
+.netlify

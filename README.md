@@ -4,7 +4,7 @@
   <p><i>A Modern Terminal-Inspired Portfolio & Engineering Archive</i></p>
   
   <p>
-    <a href="https://portfolio-1050489244458.asia-south1.run.app"><strong>Live Preview >></strong></a>
+    <a href="#"><strong>Live Preview >></strong></a>
   </p>
 </div>
 
@@ -27,8 +27,7 @@ Built as a submission for the **New Year, New You Portfolio Challenge**, this it
 
 - **Frontend**: React (Vite), Tailwind CSS, Framer Motion.
 - **AI**: Google Gemini Pro (via `@google/generative-ai`).
-- **Deployment**: Google Cloud Run (Dockerized Nginx).
-- **Automation**: Google Cloud Build.
+- **Deployment**: Netlify.
 
 ## 💻 Local Development
 
@@ -46,7 +45,8 @@ Built as a submission for the **New Year, New You Portfolio Challenge**, this it
 3. **Set up Environment Variables**:
    Create a `.env` file in the root:
    ```env
-   VITE_GEMINI_API_KEY=your_gemini_api_key_here
+   VITE_GEMINI_API_KEY_PRIMARY=your_primary_key
+   VITE_GEMINI_API_KEY_FALLBACK=your_fallback_key
    ```
 
 4. **Run development server**:
@@ -54,17 +54,15 @@ Built as a submission for the **New Year, New You Portfolio Challenge**, this it
    npm run dev
    ```
 
-## 🚢 Deployment (Cloud Run)
+## 🚢 Deployment (Netlify)
 
-The project includes a `Dockerfile` and `nginx.conf` for seamless deployment to Google Cloud Run.
+This project is configured for deployment on Netlify.
 
-```bash
-# Build and push to GCR
-gcloud builds submit --tag gcr.io/your-project-id/portfolio
-
-# Deploy to Cloud Run
-gcloud run deploy portfolio --image gcr.io/your-project-id/portfolio --region asia-south1 --platform managed --allow-unauthenticated
-```
+1.  **Connect to GitHub**: Link your repository to Netlify.
+2.  **Build Settings**:
+    - **Build Command**: `npm run build`
+    - **Publish Directory**: `dist`
+3.  **Environment Variables**: Add `VITE_GEMINI_API_KEY_PRIMARY` and `VITE_GEMINI_API_KEY_FALLBACK` in Netlify Dashboard -> Site settings -> Environment variables.
 
 ---
 
