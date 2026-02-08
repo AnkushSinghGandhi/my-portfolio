@@ -92,27 +92,6 @@ const VibranceUX = ({ isDark = false }) => {
 
     return (
         <div className="relative z-10 max-w-7xl mx-auto">
-            {/* Hero Banner */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
-                className="relative mb-10 overflow-hidden border border-neutral-800"
-            >
-                <img
-                    src="/images/vibrance-ux-banner.png"
-                    alt="Vibrance UX Custom ROM Banner"
-                    className="w-full h-48 md:h-64 object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600">
-                        <Star className="w-4 h-4 text-white" />
-                        <span className="text-sm font-mono text-white uppercase tracking-wider">Legacy Project • 2017</span>
-                    </div>
-                    <span className="text-xs font-mono text-neutral-400">Custom Android ROM</span>
-                </div>
-            </motion.div>
 
             {/* Header */}
             <motion.div

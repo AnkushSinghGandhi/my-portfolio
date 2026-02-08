@@ -112,12 +112,30 @@ export default function Hero() {
 
       {/* Scroll Down Indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 1 }}
+        onClick={() => {
+          document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+        }}
         className="hidden sm:flex absolute bottom-8 left-1/2 transform -translate-x-1/2 flex-col items-center gap-3 cursor-pointer group"
       >
-        <div className="h-12 w-[1px] bg-gradient-to-b from-transparent via-neutral-700 to-transparent group-hover:via-white transition-all duration-500" />
+        {/* Mouse Icon */}
+        <div className="w-6 h-10 rounded-full border border-neutral-700 flex justify-center p-1.5 transition-colors group-hover:border-white/50">
+          <motion.div
+            animate={{
+              y: [0, 12, 0],
+              opacity: [1, 0.4, 1]
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="w-1 h-2 bg-neutral-600 rounded-full group-hover:bg-white"
+          />
+        </div>
+
         <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-neutral-600 group-hover:text-neutral-300 transition-colors">
           Scroll
         </span>
