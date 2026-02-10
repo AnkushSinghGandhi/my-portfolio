@@ -104,7 +104,7 @@ export default function HomeAbout() {
             {[
               { label: "Architecture", value: "Microservices & Scalability" },
               { label: "Backend", value: "Python, Django, Flask" },
-              { label: "Database", value: "MySQL, MongoDB, Redis" },
+              { label: "Spoken", value: "English, Hindi, Japanese (Beginner)" },
               { label: "Philosophy", value: "Clean Code & Performance" },
             ].map((item, i) => (
               <div key={i}>

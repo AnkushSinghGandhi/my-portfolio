@@ -79,7 +79,7 @@ export default function AboutMe() {
                 { label: "WEB TECHNOLOGIES", val: "React, Modern JS, HTML/CSS", icon: Code },
                 { label: "DATA SYSTEMS", val: "MySQL, MongoDB, Redis", icon: Database },
                 { label: "CLOUD INFRASTRUCTURE", val: "AWS, Docker, CI/CD", icon: Cloud },
-                { label: "SYSTEM OPTIMIZATION", val: "API Security, High-Perf Computing", icon: Cpu },
+                { label: "SPOKEN LANGUAGES", val: "English, Hindi, Japanese (Beginner)", icon: Cpu },
               ].map((item, i) => (
                 <div key={i} className="flex items-center group">
                   <item.icon className="w-5 h-5 text-neutral-600 mr-4 group-hover:text-purple-500 transition-colors" />
