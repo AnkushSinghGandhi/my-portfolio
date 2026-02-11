@@ -13,41 +13,40 @@ export default function Navbar() {
     { name: "Experience", path: "/experience" },
     { name: "Projects", path: "/projects" },
     { name: "Archive", path: "/library" },
-    { name: "Client_Records", path: "/testimonials" },
-    { name: "Contact", path: "/contact" },
-    { name: "About_Me", path: "/about" },
+    { name: "Testimonials", path: "/testimonials" },
     { name: "Network", path: "/communities" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
     <nav
       className={`fixed top-0 w-full flex justify-between items-center px-6 md:px-12 py-5 
-      bg-black/70 backdrop-blur-lg transition-all duration-300 z-50`}
+      bg-black/70 backdrop-blur-md border-b border-white/5 transition-all duration-300 z-50`}
     >
       {/* Logo */}
       <Link
         to="/"
-        className="text-xl md:text-2xl font-semibold tracking-wide text-white hover:text-gray-300 transition"
+        className="text-xl md:text-2xl font-bold tracking-tight text-white hover:text-white/80 transition"
       >
-        warriorwhocodes<span className="text-gray-400">.com</span>
+        warriorwhocodes<span className="text-purple-500">.</span><span className="text-white/50">com</span>
       </Link>
 
       {/* Desktop Navigation */}
-      <ul className="hidden md:flex items-center gap-0 text-xs font-mono uppercase tracking-wider text-gray-500">
+      <ul className="hidden md:flex items-center gap-3 lg:gap-5 text-[10px] lg:text-[13px] font-normal tracking-tight text-gray-400 uppercase">
         {links.map((link) => {
           const isActive = location.pathname === link.path;
           return (
-            <li key={link.name} className="relative group">
+            <li key={link.name}>
               <Link
                 to={link.path}
-                className={`flex items-center px-4 py-3 transition-all duration-300 font-black ${isActive
-                  ? "text-white"
-                  : "hover:text-white"
+                className={`relative px-1 py-2 transition-all duration-300 ${isActive ? "text-white" : "hover:text-white"
                   }`}
               >
-                <span className={`mr-1.5 transition-opacity ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"} text-purple-500`}>[</span>
                 {link.name}
-                <span className={`ml-1.5 transition-opacity ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"} text-purple-500`}>]</span>
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-500 rounded-full" />
+                )}
               </Link>
             </li>
           );
@@ -55,12 +54,13 @@ export default function Navbar() {
       </ul>
 
       {/* Email Button */}
-      <a href="mailto:ankushsinghgandhi@gmail.com" className="hidden sm:block">
+      <a href="mailto:ankushsinghgandhi@gmail.com" className="hidden lg:block">
         <Button
-          className="bg-neutral-900/50 text-gray-400 border border-neutral-800 hover:border-purple-500 hover:text-white rounded-none
-          backdrop-blur-sm px-6 py-2 transition-all duration-300 font-mono text-[10px] tracking-widest uppercase"
+          variant="outline"
+          className="bg-purple-600/10 text-purple-400 border-purple-500/20 hover:bg-purple-600 hover:text-white rounded-none
+          backdrop-blur-sm px-6 py-2 transition-all duration-500 font-medium text-xs tracking-wide border uppercase"
         >
-          [ Email_Me ]
+          Contact Me
         </Button>
       </a>
 
