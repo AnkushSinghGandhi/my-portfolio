@@ -7,7 +7,7 @@ export default function FAQ() {
   const [openFAQ, setOpenFAQ] = useState(null);
 
   return (
-    <section id="faq" className="relative px-6 sm:px-12 lg:px-20 py-24 bg-gray-100 text-black overflow-hidden">
+    <section id="faq" className="relative px-6 sm:px-12 lg:px-20 py-24 bg-neutral-100 text-black overflow-hidden snap-start">
       {/* Subtle Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
@@ -22,11 +22,11 @@ export default function FAQ() {
           <div className="flex items-center gap-2 mb-4">
             <Terminal className="w-5 h-5 text-purple-600" />
             <span className="text-sm font-mono text-purple-600 tracking-widest uppercase">
-                  // ERROR_HANDLING & INFO
+                  // FREQUENTLY ASKED QUESTIONS
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight leading-tight text-black">
-            SYSTEM <br /> PROTOCOLS
+            FREQUENTLY <br /> ASKED QUESTIONS
           </h2>
           <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-md">
             Database of commonly requested information and operational procedures. Accessing knowledge bank...
@@ -42,22 +42,22 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="border border-gray-300 bg-white rounded-none overflow-hidden hover:border-purple-500/50 transition-colors duration-300"
+              className="border border-neutral-800 bg-neutral-900 rounded-none overflow-hidden hover:border-purple-500/50 transition-colors duration-300"
             >
               <button
                 onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
-                className={`w-full flex justify-between items-center text-left p-6 focus:outline-none transition-colors duration-300 ${openFAQ === idx ? 'bg-gray-50' : 'hover:bg-gray-50/50'}`}
+                className={`w-full flex justify-between items-center text-left p-6 focus:outline-none transition-colors duration-300 ${openFAQ === idx ? 'bg-neutral-800/50' : 'hover:bg-neutral-800/30'}`}
               >
                 <div className="flex items-center gap-4">
-                  <span className="font-mono text-xs text-gray-400">0{idx + 1}</span>
-                  <span className={`text-base md:text-lg font-medium transition-colors ${openFAQ === idx ? 'text-black' : 'text-gray-700'}`}>
+                  <span className="font-mono text-xs text-neutral-500">0{idx + 1}</span>
+                  <span className={`text-base md:text-lg font-medium transition-colors ${openFAQ === idx ? 'text-white' : 'text-gray-300'}`}>
                     {item.q}
                   </span>
                 </div>
                 {openFAQ === idx ? (
                   <Minus className="w-5 h-5 text-purple-600" />
                 ) : (
-                  <Plus className="w-5 h-5 text-gray-400 group-hover:text-black" />
+                  <Plus className="w-5 h-5 text-neutral-500 group-hover:text-white" />
                 )}
               </button>
 
@@ -69,7 +69,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="p-6 pt-0 text-gray-600 text-sm md:text-base leading-relaxed border-t border-gray-200">
+                    <div className="p-6 pt-0 text-gray-400 text-sm md:text-base leading-relaxed border-t border-neutral-800">
                       <div className="pt-4">
                         {item.a}
                       </div>
