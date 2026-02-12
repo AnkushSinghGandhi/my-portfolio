@@ -4,7 +4,7 @@ import { ExternalLink, Youtube, MessageCircle, Users, Smartphone, Calendar, Star
 const VibranceUX = ({ isDark = false }) => {
     // Theme-aware colors
     const textPrimary = isDark ? "text-white" : "text-black";
-    const textSecondary = isDark ? "text-neutral-400" : "text-neutral-600";
+    const textSecondary = isDark ? "text-neutral-400" : "text-gray-600";
     const textAccent = isDark ? "text-purple-400" : "text-purple-600";
 
     // Theme-aware backgrounds and borders - always dark cards
@@ -101,12 +101,12 @@ const VibranceUX = ({ isDark = false }) => {
                 className="text-center mb-12"
             >
                 <h3 className={`text-3xl md:text-4xl font-bold ${textPrimary} mb-4`}>
-                    Vibrance <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">UX</span>
+                    Vibrance <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">UX</span>
                 </h3>
 
-                <p className={`${textSecondary} max-w-2xl mx-auto`}>
-                    A custom Android ROM I built <span className={`${textPrimary} font-medium`}>during 12th grade</span> that brought
-                    Galaxy S8/S9 features to budget Samsung devices. It gained <span className={`${textAccent} font-medium`}>thousands of users</span> worldwide.
+                <p className={`${textSecondary} max-w-2xl mx-auto text-base leading-relaxed`}>
+                    A custom Android ROM I built <span className={`${textPrimary} font-black`}>during 12th grade</span> that brought
+                    Galaxy S8/S9 features to budget Samsung devices. It gained <span className={`${textAccent} font-bold`}>thousands of users</span> worldwide.
                 </p>
             </motion.div>
 

@@ -27,22 +27,22 @@ export default function Projects({ limit, isPage }) {
   return (
     <section
       id="projects"
-      className={`relative px-6 sm:px-8 py-20 sm:py-24 ${limit ? "bg-black text-gray-100" : "bg-white text-neutral-900"} overflow-hidden ${isPage ? "pt-24 sm:pt-40" : ""}`}
+      className={`relative px-6 sm:px-8 py-20 sm:py-24 ${limit ? "bg-white text-neutral-900" : "bg-white text-neutral-900"} overflow-hidden ${isPage ? "pt-24 sm:pt-40" : ""} snap-start`}
     >
       {/* Subtle Grid Background */}
-      <div className={`absolute inset-0 bg-[linear-gradient(to_right,${limit ? "#111" : "#e5e5e5"}_1px,transparent_1px),linear-gradient(to_bottom,${limit ? "#111" : "#e5e5e5"}_1px,transparent_1px)] bg-[size:40px_40px] ${limit ? "opacity-20" : "opacity-40"} pointer-events-none`} />
+      <div className={`absolute inset-0 bg-[linear-gradient(to_right,${limit ? "#e5e5e5" : "#e5e5e5"}_1px,transparent_1px),linear-gradient(to_bottom,${limit ? "#e5e5e5" : "#e5e5e5"}_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none`} />
 
       {/* Header & Controls */}
       <div className="relative z-10 flex flex-col md:flex-row md:justify-between md:items-end max-w-7xl mx-auto mb-16 gap-8">
         <div>
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2 h-2 bg-purple-600 animate-pulse" />
-            <span className="text-[10px] font-mono text-purple-600 tracking-[0.2em] uppercase">system.project_archive</span>
+            <span className="text-[10px] font-mono text-purple-600 tracking-[0.2em] uppercase">system.project_library</span>
           </div>
-          <h2 className={`text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 tracking-tight ${limit ? "text-white" : "text-black"}`}>
-            PROJECT ARCHIVE
+          <h2 className={`text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 tracking-tight ${limit ? "text-black" : "text-black"}`}>
+            PROJECT LIBRARY
           </h2>
-          <p className={`${limit ? "text-gray-500" : "text-neutral-500"} font-mono text-sm sm:text-base max-w-xl`}>
+          <p className={`${limit ? "text-gray-700" : "text-neutral-500"} font-mono text-sm sm:text-base max-w-xl uppercase tracking-tight`}>
             // EXPLORE DEPLOYED SYSTEMS AND EXPERIMENTAL LABS
           </p>
         </div>
@@ -315,14 +315,14 @@ export default function Projects({ limit, isPage }) {
         </div>
       ) : (
         /* Legacy Tab Content */
-        <VibranceUX isDark={!!limit} />
+        <VibranceUX isDark={!limit} />
       )}
 
       {/* View More Button */}
       {limit && (
         <div className="text-center mt-16">
           <Link to="/projects">
-            <Button className="font-mono bg-transparent border border-neutral-700 text-white hover:border-purple-500 hover:text-purple-400 hover:bg-purple-900/10 px-8 py-6 text-sm transition-all duration-300 uppercase tracking-widest">
+            <Button className={`font-mono bg-transparent border ${limit ? "border-neutral-300 text-black hover:bg-purple-50/50" : "border-neutral-700 text-white hover:bg-purple-900/10"} hover:border-purple-600 hover:text-purple-600 px-8 py-6 text-sm transition-all duration-300 uppercase tracking-widest`}>
               [ ACCESS FULL ARCHIVE ]
             </Button>
           </Link>
