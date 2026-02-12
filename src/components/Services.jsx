@@ -6,7 +6,7 @@ import {
     Server,
     Cpu,
     GitBranch,
-    Shield,
+    Smartphone,
     Zap,
 } from "lucide-react";
 
@@ -53,11 +53,11 @@ const services = [
     },
     {
         id: "06",
-        title: "Security & Auth",
-        sub: "OAuth • JWT • Encryption",
+        title: "Application development",
+        sub: "Flutter • iOS • Android • Cross-platform",
         description:
-            "Secure authentication systems and data protection strategies.",
-        icon: Shield,
+            "Developing high-performance, native and cross-platform mobile and desktop applications.",
+        icon: Smartphone,
     },
     {
         id: "07",
@@ -79,9 +79,9 @@ const services = [
 
 export default function Services() {
     return (
-        <section id="services" className="bg-black text-white px-6 sm:px-12 lg:px-20 py-24 relative overflow-hidden">
+        <section id="services" className="bg-neutral-100 text-black px-6 sm:px-12 lg:px-20 py-24 relative overflow-hidden snap-start">
             {/* Grid Background */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
             <div className="relative z-10 max-w-6xl mx-auto">
                 {/* Header */}
@@ -94,13 +94,13 @@ export default function Services() {
                 >
                     <div className="flex items-center gap-2 mb-2">
                         <span className="w-2 h-2 bg-purple-500 animate-pulse" />
-                        <span className="text-[10px] font-mono text-purple-400 tracking-[0.2em] uppercase">system.service_modules</span>
+                        <span className="text-[10px] font-mono text-purple-600 tracking-[0.2em] uppercase">system.technical_services</span>
                     </div>
-                    <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 tracking-tight">
-                        SERVICE_MODULES
+                    <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 tracking-tight text-black">
+                        MY SERVICES
                     </h2>
                     <p className="text-gray-500 text-sm sm:text-base font-mono max-w-xl">
-            // CORE CAPABILITIES AND TECHNICAL SERVICES
+            // COMPREHENSIVE TECHNICAL SOLUTIONS
                     </p>
                 </motion.div>
 
@@ -113,7 +113,7 @@ export default function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: index * 0.05 }}
-                            className="group relative flex items-stretch bg-neutral-900/50 border border-neutral-800 hover:border-neutral-700 transition-all duration-300 hover:bg-neutral-900/80"
+                            className="group relative flex items-stretch bg-neutral-900 border border-neutral-800 transition-all duration-300 hover:shadow-lg"
                         >
                             {/* Left Gradient Accent Bar */}
                             <div className="w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
