@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section
-      className="relative overflow-hidden bg-black text-gray-100 min-h-screen flex items-center px-6 md:px-16 lg:px-20 pt-24 pb-12 selection:bg-purple-500/30"
+      className="relative overflow-hidden bg-black text-gray-100 min-h-screen flex items-center px-6 md:px-16 lg:px-20 pt-24 pb-12 selection:bg-purple-500/30 snap-start"
     >
       {/* 1. Background Grid Pattern - Much Subtler */}
       <div
