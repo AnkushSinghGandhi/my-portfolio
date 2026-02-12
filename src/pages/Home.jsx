@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-import AboutMe from "@/components/HomeAbout";
+import AboutMe from "@/components/AboutMe";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
@@ -13,7 +13,7 @@ export default function Home() {
     <div className="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth bg-white text-black font-sans text-lg leading-relaxed">
       <Navbar />
       <Hero />
-      <AboutMe />
+      <AboutMe variant="home" />
       <Services />
       <Projects limit={9} />
       <Testimonials limit={6} />
