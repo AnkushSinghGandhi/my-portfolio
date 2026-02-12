@@ -8,7 +8,7 @@ import CachedImage from "@/components/CachedImage";
 
 export default function HomeAbout() {
   return (
-    <section id="about" className="group relative px-6 sm:px-12 lg:px-20 py-24 md:py-32 bg-white text-black overflow-hidden snap-start">
+    <section id="about" className="group relative px-6 sm:px-12 lg:px-20 py-24 md:py-32 bg-white text-black overflow-hidden snap-start snap-always">
       {/* Subtle Grid Background (Dark dots on light) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 

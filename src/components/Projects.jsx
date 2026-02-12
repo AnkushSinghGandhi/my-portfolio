@@ -27,7 +27,7 @@ export default function Projects({ limit, isPage }) {
   return (
     <section
       id="projects"
-      className={`relative px-6 sm:px-8 py-20 sm:py-24 ${limit ? "bg-white text-neutral-900" : "bg-white text-neutral-900"} overflow-hidden ${isPage ? "pt-24 sm:pt-40" : ""} snap-start`}
+      className={`relative px-6 sm:px-8 py-20 sm:py-24 ${limit ? "bg-white text-neutral-900" : "bg-white text-neutral-900"} overflow-hidden ${isPage ? "pt-24 sm:pt-40" : ""} snap-start snap-always`}
     >
       {/* Subtle Grid Background */}
       <div className={`absolute inset-0 bg-[linear-gradient(to_right,${limit ? "#e5e5e5" : "#e5e5e5"}_1px,transparent_1px),linear-gradient(to_bottom,${limit ? "#e5e5e5" : "#e5e5e5"}_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none`} />

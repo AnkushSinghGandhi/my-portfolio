@@ -19,7 +19,7 @@ export default function DevLibrary() {
     ];
 
     return (
-        <section id="dev-library" className="relative px-6 sm:px-12 lg:px-20 py-24 bg-white text-black overflow-hidden snap-start">
+        <section id="dev-library" className="relative px-6 sm:px-12 lg:px-20 py-24 bg-white text-black overflow-hidden snap-start snap-always">
             {/* Grid Background */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
@@ -71,7 +71,7 @@ export default function DevLibrary() {
                         className="lg:col-span-7 relative"
                     >
                         {/* Background Rocket (Subtle/Dark) */}
-                        <div className="absolute top-0 right-0 p-4 text-black opacity-10 transform rotate-12 scale-150 pointer-events-none">
+                        <div className="absolute top-0 right-0 p-4 text-neutral-900 opacity-20 transform rotate-12 scale-150 pointer-events-none">
                             <Icon size={200} strokeWidth={1} />
                         </div>
 
@@ -211,7 +211,7 @@ export default function DevLibrary() {
                         className="group relative inline-flex items-center gap-3 px-8 py-4 bg-black text-white text-sm font-bold tracking-widest hover:bg-neutral-800 border border-black transition-all duration-300"
                     >
                         <BookOpen className="w-4 h-4" />
-                        <span>ENTER FULL KNOWLEDGE BASE</span>
+                        <span>VISIT DEVELOPER ARCHIVES</span>
                         <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </Link>
                 </motion.div>

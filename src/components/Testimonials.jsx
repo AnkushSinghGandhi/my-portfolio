@@ -13,7 +13,7 @@ export default function Testimonials({ limit, isPage }) {
     <section
       id="testimonials"
       className={`relative px-6 sm:px-8 py-24 bg-neutral-100 text-black border-t border-gray-200 ${isPage ? "pt-32 sm:pt-40" : ""
-        } snap-start`}
+        } snap-start snap-always`}
     >
       {/* Subtle Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />

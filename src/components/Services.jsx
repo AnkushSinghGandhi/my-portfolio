@@ -79,7 +79,7 @@ const services = [
 
 export default function Services() {
     return (
-        <section id="services" className="bg-neutral-100 text-black px-6 sm:px-12 lg:px-20 py-24 relative overflow-hidden snap-start">
+        <section id="services" className="bg-neutral-100 text-black px-6 sm:px-12 lg:px-20 py-24 relative overflow-hidden snap-start snap-always">
             {/* Grid Background */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 

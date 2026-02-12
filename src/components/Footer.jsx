@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black border-t border-neutral-900 text-gray-500 px-6 md:px-12 py-16 overflow-hidden snap-start">
+    <footer className="relative bg-black border-t border-neutral-900 text-gray-500 px-6 md:px-12 py-16 overflow-hidden snap-start snap-always">
       {/* Subtle Scanline Overlay specifically for Footer */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%)] bg-[size:100%_4px] pointer-events-none opacity-20" />
 
