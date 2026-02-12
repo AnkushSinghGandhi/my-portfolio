@@ -19,9 +19,9 @@ export default function DevLibrary() {
     ];
 
     return (
-        <section id="dev-library" className="relative px-6 sm:px-12 lg:px-20 py-24 bg-black text-gray-100 overflow-hidden">
+        <section id="dev-library" className="relative px-6 sm:px-12 lg:px-20 py-24 bg-white text-black overflow-hidden snap-start">
             {/* Grid Background */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
             <div className="relative z-10 max-w-6xl mx-auto">
                 {/* Header - Terminal Style */}
@@ -34,11 +34,14 @@ export default function DevLibrary() {
                     >
                         <div className="flex items-center gap-2 mb-2">
                             <span className="w-2 h-2 bg-purple-500 animate-pulse" />
-                            <span className="text-[10px] font-mono text-purple-400 tracking-widest uppercase">system.knowledge_base</span>
+                            <span className="text-[10px] font-mono text-purple-600 tracking-widest uppercase">system.knowledge_base</span>
                         </div>
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-black mb-4">
                             DEVELOPER ARCHIVE
                         </h2>
+                        <p className="text-neutral-500 text-sm sm:text-base max-w-2xl font-mono">
+                            // CURATED REPOSITORY OF ROADMAPS, WRITINGS & LEARNING MATERIALS
+                        </p>
                     </motion.div>
 
                     <motion.div
@@ -65,13 +68,19 @@ export default function DevLibrary() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="lg:col-span-7"
+                        className="lg:col-span-7 relative"
                     >
+                        {/* Background Rocket (Subtle/Dark) */}
+                        <div className="absolute top-0 right-0 p-4 text-black opacity-10 transform rotate-12 scale-150 pointer-events-none">
+                            <Icon size={200} strokeWidth={1} />
+                        </div>
+
                         <Link
                             to={dsaRoadmap.link}
-                            className="group relative block h-full bg-neutral-900/40 border border-neutral-800 hover:border-purple-500/50 transition-all duration-500"
+                            className="group relative block h-full bg-neutral-900 border border-neutral-800 hover:border-purple-500/50 transition-all duration-500 shadow-xl overflow-hidden"
                         >
-                            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform rotate-12 scale-150">
+                            {/* Foreground Rocket (White/Bright) */}
+                            <div className="absolute top-0 right-0 p-4 text-white opacity-10 group-hover:opacity-20 transition-opacity transform rotate-12 scale-150">
                                 <Icon size={200} strokeWidth={1} />
                             </div>
 
@@ -113,9 +122,9 @@ export default function DevLibrary() {
                     </motion.div>
 
                     {/* Side Feed (Right) */}
-                    <div className="lg:col-span-5 flex flex-col gap-4">
-                        <h4 className="text-[10px] font-mono text-gray-600 uppercase tracking-widest mb-2 flex items-center gap-2">
-                            <span className="w-1 h-1 bg-gray-600" /> recent_additions
+                    <div className="lg:col-span-12 xl:col-span-5 flex flex-col gap-4">
+                        <h4 className="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2 flex items-center gap-2">
+                            <span className="w-1 h-1 bg-gray-500" /> recent_additions
                         </h4>
 
                         {otherItems.map((item, index) => (
@@ -131,12 +140,12 @@ export default function DevLibrary() {
                                         href={item.link || item.url}
                                         target={item.external || item.url ? "_blank" : "_self"}
                                         rel={item.external || item.url ? "noopener noreferrer" : ""}
-                                        className="group relative flex gap-4 p-4 bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900/60 transition-all duration-300"
+                                        className="group relative flex gap-4 p-4 bg-neutral-900 border border-neutral-800 hover:border-neutral-700 hover:bg-neutral-900 transition-all duration-300 shadow-sm"
                                     >
                                         <div className="w-1 self-stretch bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 opacity-20 group-hover:opacity-100 transition-opacity" />
                                         <div className="flex-1">
                                             <div className="flex items-center justify-between gap-2 mb-1">
-                                                <span className="text-[10px] font-mono text-gray-500 uppercase tracking-tighter">
+                                                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-tighter">
                                                     {item.id ? "cheatsheet" : "writing"}
                                                 </span>
                                                 <ArrowUpRight className="w-3 h-3 text-neutral-600 group-hover:text-purple-400 transition-colors" />
@@ -148,11 +157,11 @@ export default function DevLibrary() {
                                         </div>
                                     </a>
                                 ) : (
-                                    <div className="group relative flex gap-4 p-4 bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-all duration-300">
+                                    <div className="group relative flex gap-4 p-4 bg-neutral-900 border border-neutral-800 hover:border-neutral-700 transition-all duration-300">
                                         <div className="w-1 self-stretch bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 opacity-20 group-hover:opacity-100 transition-opacity" />
                                         <div className="flex-1">
                                             <div className="flex items-center justify-between gap-2 mb-1">
-                                                <span className="text-[10px] font-mono text-gray-500 uppercase tracking-tighter">
+                                                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-tighter">
                                                     {item.id ? "cheatsheet" : "writing"}
                                                 </span>
                                             </div>
@@ -172,10 +181,10 @@ export default function DevLibrary() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.5 }}
-                            className="mt-4 p-6 border border-neutral-800 bg-neutral-900/20"
+                            className="mt-4 p-6 border border-neutral-800 bg-neutral-900 shadow-sm"
                         >
                             <div className="flex items-center justify-between gap-4">
-                                <span className="text-xs font-mono text-gray-500 uppercase">External Sync:</span>
+                                <span className="text-xs font-mono text-neutral-500 uppercase">External Sync:</span>
                                 <div className="flex items-center gap-4">
                                     <a href={writingLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:opacity-80 transition-all hover:scale-110">
                                         <Linkedin className="h-5 w-5" />
@@ -199,7 +208,7 @@ export default function DevLibrary() {
                 >
                     <Link
                         to="/library"
-                        className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-sm font-bold tracking-widest hover:bg-transparent hover:text-white border border-white transition-all duration-300"
+                        className="group relative inline-flex items-center gap-3 px-8 py-4 bg-black text-white text-sm font-bold tracking-widest hover:bg-neutral-800 border border-black transition-all duration-300"
                     >
                         <BookOpen className="w-4 h-4" />
                         <span>ENTER FULL KNOWLEDGE BASE</span>
