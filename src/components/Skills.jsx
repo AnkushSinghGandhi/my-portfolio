@@ -8,7 +8,7 @@ export default function Skills() {
   const categories = Object.keys(skills);
 
   return (
-    <section id="skills" className="bg-gray-100 text-black px-6 sm:px-10 lg:px-20 py-24 relative overflow-hidden">
+    <section id="skills" className="bg-white text-black px-6 sm:px-10 lg:px-20 py-24 relative overflow-hidden snap-start">
       {/* Subtle Grid Background (Dark dots on light bg) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none" />
 
@@ -33,19 +33,24 @@ export default function Skills() {
         </motion.div>
 
         {/* Categories */}
-        <div className="w-full flex flex-wrap justify-center gap-6 sm:gap-10 mb-16 border-b border-gray-300 pb-4">
+        <div className="w-full flex flex-wrap justify-start gap-8 sm:gap-12 mb-16 border-b border-gray-200">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`pb-4 text-sm sm:text-base font-mono tracking-[0.2em] transition-all duration-300 relative uppercase ${selectedCategory === category
-                ? "text-black font-black"
+              className={`pb-4 text-xs sm:text-sm font-mono tracking-widest transition-all duration-300 relative uppercase ${selectedCategory === category
+                ? "text-black font-extrabold"
                 : "text-gray-400 hover:text-black"
                 }`}
             >
-              <span className={`mr-1 transition-opacity ${selectedCategory === category ? "opacity-100" : "opacity-0"} text-purple-600`}>[</span>
               {category}
-              <span className={`ml-1 transition-opacity ${selectedCategory === category ? "opacity-100" : "opacity-0"} text-purple-600`}>]</span>
+              {selectedCategory === category && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute bottom-0 left-0 w-full h-[3px] bg-purple-500 rounded-full"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
             </button>
           ))}
         </div>
@@ -70,24 +75,24 @@ export default function Skills() {
                     {skillsList.map((skill, index) => (
                       <div
                         key={index}
-                        className="group relative flex items-center bg-white border border-gray-300 p-4 transition-all duration-300 hover:border-transparent overflow-hidden shadow-sm hover:shadow-md"
+                        className="group relative flex items-center bg-neutral-900 border border-neutral-800 p-4 transition-all duration-300 hover:border-transparent overflow-hidden shadow-sm hover:shadow-md"
                       >
                         {/* Gradient Border Reveal */}
                         <div className="absolute inset-0 p-[1px] bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
-                        <div className="absolute inset-[1px] bg-white -z-10" />
+                        <div className="absolute inset-[1px] bg-black -z-10" />
 
                         {/* Number */}
-                        <span className="font-mono text-xs text-gray-400 mr-4 group-hover:text-purple-500 transition-colors">
+                        <span className="font-mono text-xs text-neutral-600 mr-4 group-hover:text-purple-500 transition-colors">
                           {String(index + 1).padStart(2, "0")}
                         </span>
 
                         {/* Icon */}
-                        <div className="text-gray-500 group-hover:text-black transition-all duration-300 mr-4 grayscale-[0.6] group-hover:grayscale-0">
+                        <div className="text-gray-400 group-hover:text-white transition-all duration-300 mr-4">
                           {skill.icon}
                         </div>
 
                         {/* Name */}
-                        <span className="text-gray-700 text-sm sm:text-base font-medium group-hover:text-black transition-colors">
+                        <span className="text-gray-300 text-sm sm:text-base font-medium group-hover:text-white transition-colors">
                           {skill.name}
                         </span>
 
